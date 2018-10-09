@@ -1,5 +1,5 @@
 {
-  "name": "hyperx",
+  "name": "hyperscript",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "hyperscript": "^2.0.2",
-    "hyperx": "^2.4.0",
-    "virtual-dom": "^2.1.1"
+    "hyperscript": "^2.0.2"
   }
 }
