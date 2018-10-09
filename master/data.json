@@ -1,0 +1,51 @@
+[
+
+	{
+		"section_name" : "Nexusweb",
+		"arguments" : [
+			{
+				"argument_name" : "uno",
+				"content" : "contenuto nuo"
+			},
+			{
+				"argument_name" : "due",
+				"content" : "contenuto due"
+			}
+
+		]
+
+	},
+
+	{
+		"section_name" : "Swiftref",
+		"arguments" : [
+			{
+				"argument_name" : "tre",
+				"content" : "contenuto tre"
+			},
+			{
+				"argument_name" : "quattro",
+				"content" : "contenuto quattro"
+			}
+
+		]
+
+	},
+    {
+        "section_name" : "SERVERS",
+        "arguments" : [
+            {
+                "argument_name" : "fibonacci",
+                "content" : "192.168.78.222"
+            },
+            {
+                "argument_name" : "tartaglia",
+                "content" : "192.168.87.222"
+            }
+
+        ]
+
+    }
+
+
+]

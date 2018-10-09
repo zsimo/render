@@ -1,0 +1,4 @@
+- provare ad editare direttamente il DOM utilizzado contentEditable="true"
+- provare se sia pensabile utilizzare un file json come se fosse un db
+- provare uno stile "design" (vedi inspiration img)
+- creare uno strumento per la documentazione di Nubilaria

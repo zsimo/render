@@ -1,0 +1,26 @@
+### visione d'insieme
+ 	
+### istruzioni operative / procedure
+- nuovo modulo zend:
+	- application/config/application.ini
+	- public/.htaccess
+	- aggiungere il Bootstrap.php relativo al modulo
+	- aggiungere folder configs che contiene module.ini
+
+- per importer_web:
+	- in public/.htaccess:
+		- php_value upload_max_filesize 30M
+		- php_value post_max_size 30M
+		- php_value max_execution_time 10000
+	- in application/configs/applications.ini
+		- enable sql query (LOAD DATA LOCAL INFILE) to read from the file system
+		- resources.db.params.driver_options.1001 = true
+
+
+	
+*** 
+- barra di navigazione laterale nested
+- campo di ricerca su tutto il contenuto (sezioni, sottosezioni, contenuto)
+- dati: json o mysql
+
+	

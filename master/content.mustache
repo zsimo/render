@@ -1,0 +1,41 @@
+<div id="section-sidebar">
+    {{#.}}
+        {{#section_name}}
+            <div class="section editable" id="{{section_name}}" data-sectionname="{{section_name}}">{{section_name}}</div>		
+        {{/section_name}}
+    {{/.}}
+</div>
+
+
+<div id="arguments-sidebar">
+{{#.}}
+    {{#arguments}}
+        {{#active}}
+            <div class="argument editable" id="{{section_name}}--{{argument_name}}" data-argumentname="{{argument_name}}" data-sectionname="{{section_name}}">
+            	{{argument_name}}
+            </div>		
+        {{/active}}
+    {{/arguments}}
+{{/.}}
+</div>
+
+<div id="content-space">
+{{#.}}
+    {{#arguments}}
+        {{#active}}
+            {{#argument_active}}
+                <div>{{content}}</div>		
+            {{/argument_active}}
+        {{/active}}
+    {{/arguments}}
+{{/.}}
+</div>
+
+
+
+
+
+
+
+
+	
