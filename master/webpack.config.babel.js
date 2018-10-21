@@ -8,7 +8,9 @@ module.exports = function (env = {}) {
     const publicPath = path.resolve(__dirname, 'public');
     const jsPath = path.resolve(publicPath, 'js');
 
-    let HtmlWebpackPluginOption = {};
+    let HtmlWebpackPluginOption = {
+        template: "./src/index.html"
+    };
     if (env.build) {
         HtmlWebpackPluginOption.filename = publicPath + "/index.html";
     }
