@@ -10,14 +10,19 @@ function renderMainList(data) {
     var container = document.createElement("div");
     container.id = "section-sidebar";
 
-    data.forEach(function (datum) {
+    data.forEach(function (datum, index) {
         if (datum.name) {
             var item = document.createElement("div");
-            item.className = "ection editable";
+            item.className = "action editable";
             item.innerText = datum.name;
+            item.setAttribute("data-index", index);
             item.addEventListener("click", function () {
                 this.contentEditable = true;
                 console.log(this);
+            });
+            item.addEventListener("blur", function () {
+                // this.contentEditable = true;
+                console.log(this.innerText);
             });
             container.appendChild(item);
         }
@@ -29,5 +34,6 @@ function renderMainList(data) {
 
 
 renderMainList(data);
+// renderSubList(data);
 
 console.log(data);
