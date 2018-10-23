@@ -11,6 +11,7 @@ var state = require("./data.json");
 require("./reduce.js")(bus, state);
 
 
+// todo save via websocket
 
 bus.on("update-sidebar", function () {
     updateSidebar();
