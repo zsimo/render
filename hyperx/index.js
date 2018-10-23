@@ -1,3 +1,5 @@
+//tagged template string virtual dom builder
+
 // =========== BROWSER
 var vdom = require('virtual-dom')
 var hyperx = require('hyperx')
