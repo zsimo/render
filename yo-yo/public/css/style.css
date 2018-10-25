@@ -37,6 +37,14 @@ html, body {
     font-size: 1.5em;
     padding: 5px 0;
 }
+.section:hover {
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+
 
 .section.editable {
 	min-height: 30px;
