@@ -1,5 +1,4 @@
-
-
+"use strict";
 
 module.exports = function (bus, state) {
     bus.on("increment", function () {
