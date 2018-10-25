@@ -8,7 +8,7 @@ var sidebar = document.getElementById("section-sidebar");
 
 module.exports = function (bus) {
 
-    function sectionOnClick () {
+    function sectionOnDblClick () {
         this.contentEditable = true;
     }
     function sectionOnBlur () {
@@ -31,7 +31,7 @@ module.exports = function (bus) {
                     <div class="section editable"
                         data-id="${index}"
                         onblur="${sectionOnBlur}"
-                        onclick="${sectionOnClick}">${item.name}</div>`
+                        ondblclick="${sectionOnDblClick}">${item.name}</div>`
                 })}
             </div>`;
 
