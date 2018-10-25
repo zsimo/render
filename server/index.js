@@ -5,9 +5,6 @@
 "use strict";
 
 var configs = require("../configs.json");
-var utils = require("../utils.js");
-
-var PORT = configs.SERVER.PORT;
 
 var app = require("express")();
 var fs = require("fs");
@@ -15,25 +12,38 @@ var http = require("http");
 var server = http.Server(app);
 var io = require("socket.io")(server);
 
-server.listen(PORT);
+var dataFile = "./data.json";
+
+
+server.listen(configs.SERVER.PORT);
 
 io.on("connection", function(socket){
     // console.log('a user connected');
     socket.on("save", function (state) {
         try {
-            fs.writeFileSync(__dirname + "/data.json", JSON.stringify(state, null, 2));
+            fs.writeFile(dataFile, JSON.stringify(state, null, 2), function () {
+                socket.emit("saved");
+            });
         } catch (e) {
             console.log(e);
         }
 
-        console.log(state);
-        socket.emit("saved");
+
     });
 
 
-    //socket.on("disconnect", function () {
-    //    console.log("user disconnect");
-    //});
+    socket.on("get-data", function () {
+        try {
+            fs.readFile(dataFile, 'utf8', function (err, data) {
+                if (err) throw err;
+                console.log(data);
+                socket.emit("data-loaded", JSON.parse(data));
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+    });
 
 });
 
