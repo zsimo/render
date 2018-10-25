@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
+    "concurrently": "^4.0.1",
     "events": "^3.0.0",
     "html-webpack-plugin": "^2.28.0",
+    "now": "^11.4.6",
     "rimraf": "^2.6.1",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5",
@@ -14,7 +16,9 @@
     "prestart": "rimraf ./public/js/ ./public/index.html",
     "start": "webpack-dev-server",
     "prebuild": "rimraf ./public/js/ ./public/index.html",
-    "build": "webpack --env.build"
+    "build": "webpack --env.build",
+    "deploy": "./node_modules/now/download/dist/now.exe",
+    "all": "concurrently \"npm run start\" \"npm run start:server\""
   },
   "bin": {
     "webpack": "./node_modules/.bin/webpack",

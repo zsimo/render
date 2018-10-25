@@ -38,6 +38,13 @@ html, body {
     padding: 5px 0;
 }
 
+.section.editable {
+	min-height: 30px;
+}
+.section.editable:empty {
+	border: 1px solid lightblue;
+}
+
 #arguments-sidebar {
 	height: 100%;
 	width: 15%;
