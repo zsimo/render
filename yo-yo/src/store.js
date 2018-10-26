@@ -44,13 +44,31 @@ module.exports = function (bus) {
         update: function (index, newValue) {
             state[index].name = newValue;
             this.save(state);
-            bus.emit("update-sidebar", addEmptyElement(state));
+            // bus.emit("update-sidebar", addEmptyElement(state));
         },
-        updateSelectedItem: function (itemIndex) {
 
-            var children = state[itemIndex].hasOwnProperty("children") ? state[itemIndex].children : [];
 
-            bus.emit("update-child-arguments", addEmptyElement(children));
+        updateStateSecondColumnChange: function (firstColumnItemIndex, selectedItemIndex, newValue) {
+
+            if (!state[firstColumnItemIndex].children) {
+                state[firstColumnItemIndex].children = [
+                    {
+                        name : ""
+                    }
+                ];
+            }
+
+            state[firstColumnItemIndex].children[selectedItemIndex].name = newValue;
+            this.save(state);
+
+            // var children = state[firstColumnItemIndex].hasOwnProperty("children") ? state[firstColumnItemIndex].children : [];
+            // bus.emit("update-child-arguments", firstColumnItemIndex, addEmptyElement(children));
+        },
+        updateSelectedItem: function (firstColumnItemIndex) {
+
+            var children = state[firstColumnItemIndex].hasOwnProperty("children") ? state[firstColumnItemIndex].children : [];
+
+            bus.emit("update-child-arguments", firstColumnItemIndex, addEmptyElement(children));
         },
         save: function (state) {
             socket.emit("save", state);
