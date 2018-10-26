@@ -3,6 +3,7 @@
 
 var html = require("yo-yo");
 var sidebar = document.getElementById("section-sidebar");
+var childArguments = document.getElementById("section-arguments");
 
 
 
@@ -10,6 +11,10 @@ module.exports = function (bus) {
 
     function sectionOnDblClick () {
         this.contentEditable = true;
+    }
+    function sectionOnMouseDown () {
+        var itemIndex = this.getAttribute("data-id")
+        bus.emit("update-selected-item", itemIndex);
     }
     function sectionOnBlur () {
 
@@ -24,7 +29,7 @@ module.exports = function (bus) {
 
     return {
         updateSidebar: function (state) {
-            var newSidebar = html
+            var newHtml = html
                 `<div id="section-sidebar">
                 ${state.map(function (item, index) {
                     return html`
@@ -34,14 +39,36 @@ module.exports = function (bus) {
                             class="section editable"
                             data-id="${index}"
                             onblur="${sectionOnBlur}"
-                            ondblclick="${sectionOnDblClick}">
-                            ${item.name}
-                        </label>
+                            onmousedown="${sectionOnMouseDown}"
+                            ondblclick="${sectionOnDblClick}">${item.name}</label>
                     </div>`
                 })}
             </div>`;
 
-            html.update(sidebar, newSidebar);
+            html.update(sidebar, newHtml);
+        },
+
+        updateArguments: function (childred) {
+            var newHtml = html
+                `<div id="section-arguments">
+                ${childred.map(function (item, index) {
+                    return html`
+                    <div>
+                        <input type="radio" id="section-${index}" name="section-arguments">
+                        <label for="section-${index}" 
+                            class="section editable"
+                            data-id="${index}"
+                            onblur="${sectionOnBlur}"
+                            onmousedown="${sectionOnMouseDown}"
+                            ondblclick="${sectionOnDblClick}">${item.name}</label>
+                    </div>`
+                })}
+            </div>`;
+
+            html.update(childArguments, newHtml);
         }
+
+
+
     };
 };

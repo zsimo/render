@@ -15,7 +15,8 @@ html, body
   background: lightcyan
 
 
-#section-sidebar
+#section-sidebar,
+#section-arguments
   height: 100%
   width: 15%
   float: left
@@ -35,23 +36,15 @@ html, body
     padding: 5px 10px
   .section.editable
     min-height: 30px
+  .section.editable.selected
+    background: lightgoldenrodyellow
 
   .section.editable:empty
     border: 1px solid lightblue
 
 
-#arguments-sidebar
-  height: 100%
-  width: 15%
-  float: left
-  border-right: 1px solid lightgray
-  margin-left: 2px
-
-#content-space
+#section-content
   height: 100%
   width: 68%
   float: left
   margin-left: 2px
-
-.selected
-  background: whitesmoke !important
