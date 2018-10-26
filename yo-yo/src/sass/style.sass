@@ -1,0 +1,57 @@
+html, body
+  margin: 0
+  padding: 0
+
+#header
+  width: 100%
+  height: 20px
+  background: navy
+  color: white
+
+
+#content
+  height: 100%
+  width: 100%
+  background: lightcyan
+
+
+#section-sidebar
+  height: 100%
+  width: 15%
+  float: left
+  border-right: 1px solid lightgray
+  margin-left: 2px
+  line-height: 2
+  font-size: 1.5em
+  padding: 5px 0
+
+  input[type=radio]
+    display: none
+  [type=radio]:checked ~ .section
+    background: #eee
+
+  .section
+    display: block
+    padding: 5px 10px
+  .section.editable
+    min-height: 30px
+
+  .section.editable:empty
+    border: 1px solid lightblue
+
+
+#arguments-sidebar
+  height: 100%
+  width: 15%
+  float: left
+  border-right: 1px solid lightgray
+  margin-left: 2px
+
+#content-space
+  height: 100%
+  width: 68%
+  float: left
+  margin-left: 2px
+
+.selected
+  background: whitesmoke !important

@@ -28,10 +28,16 @@ module.exports = function (bus) {
                 `<div id="section-sidebar">
                 ${state.map(function (item, index) {
                     return html`
-                    <div class="section editable"
-                        data-id="${index}"
-                        onblur="${sectionOnBlur}"
-                        ondblclick="${sectionOnDblClick}">${item.name}</div>`
+                    <div>
+                        <input type="radio" id="section-${index}" name="section-sidebar">
+                        <label for="section-${index}" 
+                            class="section editable"
+                            data-id="${index}"
+                            onblur="${sectionOnBlur}"
+                            ondblclick="${sectionOnDblClick}">
+                            ${item.name}
+                        </label>
+                    </div>`
                 })}
             </div>`;
 

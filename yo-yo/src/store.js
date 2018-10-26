@@ -1,7 +1,8 @@
 "use strict";
 
 var configs = require("../../configs.json");
-var socket = io(`${configs.SERVER.HOST}:${configs.SERVER.PORT}`);
+// var socket = io(`${configs.SERVER.HOST}:${configs.SERVER.PORT}`);
+var socket = require('socket.io-client')(`${configs.SERVER.HOST}:${configs.SERVER.PORT}`);
 
 
 var state = {};

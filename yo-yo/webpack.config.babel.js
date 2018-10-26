@@ -18,10 +18,34 @@ module.exports = function (env = {}) {
     console.log(env);
 
     return {
-        entry: "./src/index.js",
+        mode: 'development',
+        entry: [
+                "./src/sass/style.sass",
+                "./src/index.js"
+        ],
+
         output: {
             path: jsPath,
             filename: 'bundle.js'
+        },
+
+        module: {
+            rules: [
+                {
+                    test: /\.css$/, loader: "style-loader!css-loader"
+                },
+                {
+                test: /\.sass$/,
+                use: [
+                    "style-loader", // creates style nodes from JS strings
+                    "css-loader", // translates CSS into CommonJS
+                    "sass-loader" // compiles Sass to CSS, using Node Sass by default
+                ]
+            }]
+        },
+
+        resolve: {
+            extensions: [".js", ".ts", ".json", ".css", ".scss", ".sass", '.jpg']
         },
 
         devServer: {
