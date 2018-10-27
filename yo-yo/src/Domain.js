@@ -63,13 +63,13 @@ module.exports = function (bus) {
 
         updateSelectedItem: function (firstColumnItemIndex) {
             var children = state[firstColumnItemIndex].hasOwnProperty("children") ? state[firstColumnItemIndex].children : [];
-            bus.emit("update-child-arguments", firstColumnItemIndex, addEmptyElement(children));
+            bus.emit("presentation.update-second-column", firstColumnItemIndex, addEmptyElement(children));
         },
 
         loadData: function () {
             DataAccess.read(function (data) {
                 state = data;
-                bus.emit("update-sidebar", addEmptyElement(state));
+                bus.emit("presentation.update-first-column", addEmptyElement(state));
             });
         }
     };

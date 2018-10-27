@@ -24,11 +24,12 @@ bus.on("second-column.update-state", function (firstColumnItemIndex, selectedIte
 bus.on("update-selected-item", function (itemIndex) {
     Domain.updateSelectedItem(itemIndex);
 });
-bus.on("update-sidebar", function (state) {
-    Presentation.updateSidebar(state);
-});
 
-bus.on("update-child-arguments", function (firstColumnItemIndex, children) {
+
+bus.on("presentation.update-first-column", function (state) {
+    Presentation.updateFirstColumn(state);
+});
+bus.on("presentation.update-second-column", function (firstColumnItemIndex, children) {
     Presentation.updateSecondColumn(firstColumnItemIndex, children);
 });
 
