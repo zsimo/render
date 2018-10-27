@@ -9,7 +9,7 @@
 
 var EventEmitter = require("events");
 var bus = new EventEmitter();
-var view = require("./view.js")(bus);
+var Presentation = require("./presentation.js")(bus);
 var Domain = require("./Domain.js")(bus);
 
 Domain.loadData();
@@ -25,11 +25,11 @@ bus.on("update-selected-item", function (itemIndex) {
     Domain.updateSelectedItem(itemIndex);
 });
 bus.on("update-sidebar", function (state) {
-    view.updateSidebar(state);
+    Presentation.updateSidebar(state);
 });
 
 bus.on("update-child-arguments", function (firstColumnItemIndex, children) {
-    view.updateSecondColumn(firstColumnItemIndex, children);
+    Presentation.updateSecondColumn(firstColumnItemIndex, children);
 });
 
 

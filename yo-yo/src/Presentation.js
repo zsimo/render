@@ -8,7 +8,7 @@
 
 var html = require("yo-yo");
 var sidebar = document.getElementById("section-sidebar");
-var childArguments = document.getElementById("section-arguments");
+var childArguments = document.getElementById("second-column");
 
 
 
@@ -64,13 +64,13 @@ module.exports = function (bus) {
             html.update(sidebar, newHtml);
         },
 
-        updateSecondColumn: function (firstColumnItemIndex, childred) {
+        updateSecondColumn: function (firstColumnItemIndex, data) {
             var newHtml = html
-                `<div id="section-arguments">
-                ${childred.map(function (item, index) {
+                `<div id="second-column">
+                ${data.map(function (item, index) {
                     return html`
                     <div>
-                        <input type="radio" id="second-column-${index}" name="section-arguments">
+                        <input type="radio" id="second-column-${index}" name="second-column">
                         <label for="second-column-${index}" 
                             class="section editable"
                             data-id="${index}"
