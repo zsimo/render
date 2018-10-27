@@ -1,7 +1,7 @@
 "use strict";
 
-var configs = require("../../configs.json");
-var socket = require('socket.io-client')(`${configs.SERVER.HOST}:${configs.SERVER.PORT}`);
+
+var DataAccess = require("./DataAccess");
 
 var state = {};
 
@@ -30,21 +30,11 @@ function addEmptyElement (data) {
 
 module.exports = function (bus) {
 
-    socket.on("data-loaded", function (data) {
-        state = data;
-        bus.emit("update-sidebar", addEmptyElement(state));
-    });
-
-    socket.on("saved", function () {
-        console.log("data saved");
-    });
-
     return {
 
         update: function (index, newValue) {
             state[index].name = newValue;
-            this.save(state);
-            // bus.emit("update-sidebar", addEmptyElement(state));
+            DataAccess.write(state);
         },
 
 
@@ -59,23 +49,19 @@ module.exports = function (bus) {
             }
 
             state[firstColumnItemIndex].children[selectedItemIndex].name = newValue;
-            this.save(state);
-
-            // var children = state[firstColumnItemIndex].hasOwnProperty("children") ? state[firstColumnItemIndex].children : [];
-            // bus.emit("update-child-arguments", firstColumnItemIndex, addEmptyElement(children));
+            DataAccess.write(state);
         },
         updateSelectedItem: function (firstColumnItemIndex) {
-
             var children = state[firstColumnItemIndex].hasOwnProperty("children") ? state[firstColumnItemIndex].children : [];
-
             bus.emit("update-child-arguments", firstColumnItemIndex, addEmptyElement(children));
         },
-        save: function (state) {
-            socket.emit("save", state);
-        },
+
 
         loadData: function () {
-            socket.emit("get-data", state);
+            DataAccess.read(function (data) {
+                state = data;
+                bus.emit("update-sidebar", addEmptyElement(state));
+            });
         }
     };
 };

@@ -16,28 +16,29 @@ var dataFile = "./data.json";
 
 
 server.listen(configs.SERVER.PORT);
+console.log("socket listen on port: " + configs.SERVER.PORT);
 
 io.on("connection", function(socket){
-    // console.log('a user connected');
-    socket.on("save", function (state) {
+
+    socket.on("write", function (data) {
         try {
-            fs.writeFile(dataFile, JSON.stringify(state, null, 2), function () {
-                socket.emit("saved");
+            fs.writeFile(dataFile, JSON.stringify(data, null, 2), function () {
+                console.log("writing_done");
+                socket.emit("writing_done");
             });
         } catch (e) {
             console.log(e);
         }
 
-
     });
 
 
-    socket.on("get-data", function () {
+    socket.on("read", function () {
         try {
             fs.readFile(dataFile, 'utf8', function (err, data) {
                 if (err) throw err;
-                console.log(data);
-                socket.emit("data-loaded", JSON.parse(data));
+                console.log("reading_done");
+                socket.emit("reading_done", JSON.parse(data));
             });
         } catch (e) {
             console.log(e);
