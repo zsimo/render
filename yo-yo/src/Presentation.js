@@ -107,7 +107,9 @@ module.exports = function (bus) {
                             data-id="${index}"
                             data-parent-index="${firstColumnItemIndex}"
                             onblur="${secondColumnOnBlur}"
-                            onmousedown="${itemOnMouseDown}"
+                            tabindex="0"
+                            onkeydown="${itemOnKeyDown}"
+                            onkeyup="${itemOnKeyUp}"
                             ondblclick="${itemOnDblClick}">${item.name}</label>
                     </div>`
                 })}
