@@ -7,6 +7,15 @@ var secondColumn = document.getElementById("second-column");
 
 module.exports = function (bus) {
 
+    function isvalidKeyCode (keycode) {
+        return (keycode > 47 && keycode < 58)   || // number keys
+                keycode == 32 || keycode == 13   || // spacebar & return key(s) (if you want to allow carriage returns)
+                (keycode > 64 && keycode < 91)   || // letter keys
+                (keycode > 95 && keycode < 112)  || // numpad keys
+                (keycode > 185 && keycode < 193) || // ;=,-./` (in order)
+                (keycode > 218 && keycode < 223);
+    }
+
     function itemOnDblClick () {
         this.contentEditable = true;
     }
@@ -16,7 +25,7 @@ module.exports = function (bus) {
     }
     function itemOnKeyDown (event) {
 
-        if (event.keyCode !== 27) {
+        if (isvalidKeyCode(event.keyCode)) {
             // let react to the onkeydown event only once
             this.onkeydown = "";
 
@@ -44,6 +53,7 @@ module.exports = function (bus) {
         this.contentEditable = false;
         var index = this.getAttribute("data-id");
         var newValue = this.innerText;
+        this.onkeydown = itemOnKeyDown
         bus.emit("domain.update-first-column", index, newValue);
     }
     function secondColumnOnBlur () {
@@ -51,6 +61,7 @@ module.exports = function (bus) {
         var index = this.getAttribute("data-id");
         var firstColumnItemIndex = this.getAttribute("data-parent-index");
         var newValue = this.innerText;
+        this.onkeydown = itemOnKeyDown
         bus.emit("domain.update-second-column", firstColumnItemIndex, index, newValue);
     }
 
