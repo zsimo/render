@@ -1,45 +1,32 @@
 "use strict";
 
-
-
-// FIRTS COLUMN
-// SECOND COLUMN
-// EDIT COLUMN
-
 var html = require("yo-yo");
-var sidebar = document.getElementById("first-column");
-var childArguments = document.getElementById("second-column");
 
-
+var firstColumn = document.getElementById("first-column");
+var secondColumn = document.getElementById("second-column");
 
 module.exports = function (bus) {
 
-    function sectionOnDblClick () {
+    function itemOnDblClick () {
         this.contentEditable = true;
     }
-    function sectionOnMouseDown () {
+    function itemOnMouseDown () {
         var itemIndex = this.getAttribute("data-id")
-        bus.emit("update-selected-item", itemIndex);
+        bus.emit("domain.update-selected-item", itemIndex);
     }
-    function sectionOnBlur () {
 
+    function firstColumnOnBlur () {
         this.contentEditable = false;
-
         var index = this.getAttribute("data-id");
         var newValue = this.innerText;
-
-        bus.emit("update-state", index, newValue);
+        bus.emit("domain.update-first-column", index, newValue);
     }
-
     function secondColumnOnBlur () {
-
         this.contentEditable = false;
-
         var index = this.getAttribute("data-id");
         var firstColumnItemIndex = this.getAttribute("data-parent-index");
         var newValue = this.innerText;
-
-        bus.emit("second-column.update-state", firstColumnItemIndex, index, newValue);
+        bus.emit("domain.update-second-column", firstColumnItemIndex, index, newValue);
     }
 
 
@@ -54,14 +41,14 @@ module.exports = function (bus) {
                         <label for="section-${index}" 
                             class="section editable"
                             data-id="${index}"
-                            onblur="${sectionOnBlur}"
-                            onmousedown="${sectionOnMouseDown}"
-                            ondblclick="${sectionOnDblClick}">${item.name}</label>
+                            onblur="${firstColumnOnBlur}"
+                            onmousedown="${itemOnMouseDown}"
+                            ondblclick="${itemOnDblClick}">${item.name}</label>
                     </div>`
                 })}
             </div>`;
 
-            html.update(sidebar, newHtml);
+            html.update(firstColumn, newHtml);
         },
 
         updateSecondColumn: function (firstColumnItemIndex, data) {
@@ -76,13 +63,12 @@ module.exports = function (bus) {
                             data-id="${index}"
                             data-parent-index="${firstColumnItemIndex}"
                             onblur="${secondColumnOnBlur}"
-                    
-                            ondblclick="${sectionOnDblClick}">${item.name}</label>
+                            ondblclick="${itemOnDblClick}">${item.name}</label>
                     </div>`
                 })}
             </div>`;
 
-            html.update(childArguments, newHtml);
+            html.update(secondColumn, newHtml);
         }
 
 

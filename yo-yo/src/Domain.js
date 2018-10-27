@@ -13,23 +13,23 @@ var DataAccess = require("./DataAccess");
 
 var state = {};
 
+var emptyItem = {
+    name: ""
+};
+
 /**
  * always put an empty element at the end of the list
  */
-function addEmptyElement (data) {
+function addEmptyItem (data) {
 
     var lastElement = data[data.length - 1];
 
     if (data.length) {
         if (lastElement.name) {
-            data.push({
-                name: ""
-            });
+            data.push(emptyItem);
         }
     } else {
-        data.push({
-            name: ""
-        });
+        data.push(emptyItem);
     }
 
     return data;
@@ -40,20 +40,15 @@ module.exports = function (bus) {
 
     return {
 
-        update: function (index, newValue) {
+        updateFirstColumn: function (index, newValue) {
             state[index].name = newValue;
             DataAccess.write(state);
         },
 
-
-        updateStateSecondColumnChange: function (firstColumnItemIndex, selectedItemIndex, newValue) {
+        updateSecondColumn: function (firstColumnItemIndex, selectedItemIndex, newValue) {
 
             if (!state[firstColumnItemIndex].children) {
-                state[firstColumnItemIndex].children = [
-                    {
-                        name : ""
-                    }
-                ];
+                state[firstColumnItemIndex].children = [emptyItem];
             }
 
             state[firstColumnItemIndex].children[selectedItemIndex].name = newValue;
@@ -63,13 +58,13 @@ module.exports = function (bus) {
 
         updateSelectedItem: function (firstColumnItemIndex) {
             var children = state[firstColumnItemIndex].hasOwnProperty("children") ? state[firstColumnItemIndex].children : [];
-            bus.emit("presentation.update-second-column", firstColumnItemIndex, addEmptyElement(children));
+            bus.emit("presentation.update-second-column", firstColumnItemIndex, addEmptyItem(children));
         },
 
         loadData: function () {
             DataAccess.read(function (data) {
                 state = data;
-                bus.emit("presentation.update-first-column", addEmptyElement(state));
+                bus.emit("presentation.update-first-column", addEmptyItem(state));
             });
         }
     };

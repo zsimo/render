@@ -14,14 +14,14 @@ var Domain = require("./Domain.js")(bus);
 
 Domain.loadData();
 
-bus.on("update-state", function (index, newValue) {
-    Domain.update(index, newValue);
+bus.on("domain.update-first-column", function (index, newValue) {
+    Domain.updateFirstColumn(index, newValue);
 });
-bus.on("second-column.update-state", function (firstColumnItemIndex, selectedItemIndex, newValue) {
-    Domain.updateStateSecondColumnChange(firstColumnItemIndex, selectedItemIndex, newValue);
+bus.on("domain.update-second-column", function (firstColumnItemIndex, selectedItemIndex, newValue) {
+    Domain.updateSecondColumn(firstColumnItemIndex, selectedItemIndex, newValue);
 });
 
-bus.on("update-selected-item", function (itemIndex) {
+bus.on("domain.update-selected-item", function (itemIndex) {
     Domain.updateSelectedItem(itemIndex);
 });
 
