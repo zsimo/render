@@ -1,8 +1,15 @@
 "use strict";
 
+/**
+ * This object has the only function to communicate to the server (a socket server),
+ * writing and reading data.
+ *
+ * @author Simone Sacchi
+ * @version 2018/10/27
+ */
+
 var configs = require("../../configs.json");
 var socket = require('socket.io-client')(`${configs.SERVER.HOST}:${configs.SERVER.PORT}`);
-
 
 module.exports = {
 

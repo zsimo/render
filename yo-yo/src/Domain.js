@@ -1,5 +1,13 @@
 "use strict";
 
+/**
+ * This object manage the domain state,
+ * changing it accordingly with the user interaction with the UI,
+ * and use the DataAccess to write and read data from server.
+ *
+ * @author Simone Sacchi
+ * @version 2018/10/27
+ */
 
 var DataAccess = require("./DataAccess");
 
@@ -49,13 +57,14 @@ module.exports = function (bus) {
             }
 
             state[firstColumnItemIndex].children[selectedItemIndex].name = newValue;
+
             DataAccess.write(state);
         },
+
         updateSelectedItem: function (firstColumnItemIndex) {
             var children = state[firstColumnItemIndex].hasOwnProperty("children") ? state[firstColumnItemIndex].children : [];
             bus.emit("update-child-arguments", firstColumnItemIndex, addEmptyElement(children));
         },
-
 
         loadData: function () {
             DataAccess.read(function (data) {
