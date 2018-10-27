@@ -14,6 +14,31 @@ module.exports = function (bus) {
         var itemIndex = this.getAttribute("data-id")
         bus.emit("domain.update-selected-item", itemIndex);
     }
+    function itemOnKeyDown (event) {
+
+        if (event.keyCode !== 27) {
+            // let react to the onkeydown event only once
+            this.onkeydown = "";
+
+            this.setAttribute("data-previous-text", this.innerText);
+
+            this.contentEditable = true;
+            this.innerText = "";
+        }
+    }
+
+    function itemOnKeyUp (event) {
+
+        if (event.keyCode === 27) {
+            var previousText = this.getAttribute("data-previous-text");
+            if (previousText) {
+                this.innerText = previousText;
+                this.contentEditable = false;
+                this.removeAttribute("data-previous-text");
+                this.onkeydown = itemOnKeyDown;
+            }
+        }
+    }
 
     function firstColumnOnBlur () {
         this.contentEditable = false;
@@ -31,18 +56,23 @@ module.exports = function (bus) {
 
 
     return {
-        updateFirstColumn: function (state) {
+        updateFirstColumn: function (data) {
+            var name = "first-column";
+
             var newHtml = html
-                `<div id="first-column">
-                ${state.map(function (item, index) {
+                `<div id="${name}">
+                ${data.map(function (item, index) {
                     return html`
                     <div>
-                        <input type="radio" id="section-${index}" name="first-column">
+                        <input type="radio" id="section-${index}" name="${name}">
                         <label for="section-${index}" 
                             class="section editable"
                             data-id="${index}"
                             onblur="${firstColumnOnBlur}"
                             onmousedown="${itemOnMouseDown}"
+                            tabindex="0"
+                            onkeydown="${itemOnKeyDown}"
+                            onkeyup="${itemOnKeyUp}"
                             ondblclick="${itemOnDblClick}">${item.name}</label>
                     </div>`
                 })}
@@ -52,17 +82,21 @@ module.exports = function (bus) {
         },
 
         updateSecondColumn: function (firstColumnItemIndex, data) {
+
+            var name = "second-column";
+
             var newHtml = html
-                `<div id="second-column">
+                `<div id="${name}">
                 ${data.map(function (item, index) {
                     return html`
                     <div>
-                        <input type="radio" id="second-column-${index}" name="second-column">
+                        <input type="radio" id="second-column-${index}" name="${name}">
                         <label for="second-column-${index}" 
                             class="section editable"
                             data-id="${index}"
                             data-parent-index="${firstColumnItemIndex}"
                             onblur="${secondColumnOnBlur}"
+                            onmousedown="${itemOnMouseDown}"
                             ondblclick="${itemOnDblClick}">${item.name}</label>
                     </div>`
                 })}
