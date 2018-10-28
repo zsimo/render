@@ -56,7 +56,7 @@ module.exports = function (bus) {
             state[firstColumnItemIndex].children = addEmptyItem(state[firstColumnItemIndex].children);
 
             DataAccess.write(state);
-            bus.emit("presentation.update-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
+            bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
         },
 
         updateSelectedItem: function (firstColumnItemIndex) {
@@ -73,7 +73,7 @@ module.exports = function (bus) {
             });
 
             DataAccess.write(state);
-            bus.emit("presentation.update-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
+            bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
         },
 
         loadData: function () {

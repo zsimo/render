@@ -28,7 +28,7 @@ bus.on("domain.update-selected-item", function (itemIndex) {
 bus.on("presentation.render-first-column", function (state) {
     Presentation.updateFirstColumn(state);
 });
-bus.on("presentation.update-second-column", function (firstColumnItemIndex, children) {
+bus.on("presentation.render-second-column", function (firstColumnItemIndex, children) {
     Presentation.updateSecondColumn(firstColumnItemIndex, children);
 });
 
