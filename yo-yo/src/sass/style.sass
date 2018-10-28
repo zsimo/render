@@ -1,3 +1,5 @@
+@import "colors"
+
 @import url('https://fonts.googleapis.com/css?family=Quicksand')
 body
   font-family: 'Quicksand', sans-serif
@@ -9,15 +11,16 @@ html, body
 
 #header
   width: 100%
-  height: 20px
-  background: navy
+  padding: 5px 10px
+  background: $header
   color: white
+  font-weight: bold
 
 
-#content
-  height: 100%
-  width: 100%
-  background: lightcyan
+//#content
+//  height: 100%
+//  width: 100%
+//  background: lightcyan
 
 
 #first-column,
@@ -25,7 +28,7 @@ html, body
   height: 100%
   width: 15%
   float: left
-  border-right: 1px solid lightgray
+  //border-right: 1px solid lightgray
   margin-left: 2px
   line-height: 2
   font-size: 1.5em
@@ -34,18 +37,22 @@ html, body
   input[type=radio]
     display: none
   [type=radio]:checked ~ .section
-    background: #eee
+    background: $selectedItem
 
   .section
     display: block
     padding: 5px 10px
   .section.editable
     min-height: 30px
-  .section.editable.selected
-    background: lightgoldenrodyellow
-
   .section.editable:empty
-    border: 1px solid lightblue
+    background: $emptyItem
+  .section.editable:empty::after
+    content: '\002b'
+    color: white
+    text-align: center
+    display: block
+    width: 100%
+    font-weight: bold
 
 
 #section-content
