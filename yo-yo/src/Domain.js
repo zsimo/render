@@ -47,7 +47,7 @@ module.exports = function (bus) {
             state[index].name = newValue;
             state = addEmptyItem(state);
             DataAccess.write(state);
-            bus.emit("presentation.update-first-column", state);
+            bus.emit("presentation.render-first-column", state);
         },
 
         updateSecondColumn: function (firstColumnItemIndex, selectedItemIndex, newValue) {
@@ -80,7 +80,7 @@ module.exports = function (bus) {
             DataAccess.read(function (data) {
                 state = addEmptyItem(data);
                 //state = data;
-                bus.emit("presentation.update-first-column", state);
+                bus.emit("presentation.render-first-column", state);
             });
         }
     };
