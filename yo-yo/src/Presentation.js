@@ -69,14 +69,14 @@ module.exports = function (bus) {
     return {
         updateFirstColumn: function (data) {
             var name = "first-column";
-// checked="${item.selected}"
+  
             var newHtml = html
                 `<div id="${name}">
                 ${data.map(function (item, index) {
-                    
+                    var checked = item.checked ? "checked" : "";
                     return html`
                     <div>
-                        <input type="radio" id="section-${index}" name="${name}">
+                        <input type="radio" id="section-${index}" name="${name}" ${checked}>
                         <label for="section-${index}" 
                             class="section editable"
                             data-id="${index}"

@@ -60,7 +60,19 @@ module.exports = function (bus) {
         },
 
         updateSelectedItem: function (firstColumnItemIndex) {
+            firstColumnItemIndex = parseInt(firstColumnItemIndex, 10);
+            state = state.map(function (item, index) {
 
+                if (index === firstColumnItemIndex) {
+                    item.checked = true;
+                } else {
+                    item.checked = false;
+                }
+
+                return item;
+            });
+
+            DataAccess.write(state);
             bus.emit("presentation.update-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
         },
 
