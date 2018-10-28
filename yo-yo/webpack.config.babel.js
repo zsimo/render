@@ -45,7 +45,8 @@ module.exports = function (env = {}) {
         },
 
         resolve: {
-            extensions: [".js", ".ts", ".json", ".css", ".scss", ".sass", '.jpg']
+            extensions: [".js", ".ts", ".json", ".css", ".scss", ".sass", '.jpg'],
+            modules: ['node_modules', path.resolve(__dirname, "src")]
         },
 
         devServer: {

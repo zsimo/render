@@ -21,7 +21,6 @@ module.exports = function (bus) {
         this.contentEditable = true;
     }
     function itemOnMouseUp () {
-        console.log("mousedown");
         var itemIndex = this.getAttribute("data-id")
         bus.emit("domain.update-selected-item", itemIndex);
     }
@@ -61,7 +60,6 @@ module.exports = function (bus) {
         this.onkeydown = itemOnKeyDown;
     }
     function secondColumnOnBlur () {
-        console.log("blur");
         this.contentEditable = false;
         var index = this.getAttribute("data-id");
         var firstColumnItemIndex = this.getAttribute("data-parent-index");

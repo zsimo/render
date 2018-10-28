@@ -24,11 +24,12 @@
     "start": "webpack-dev-server",
     "prebuild": "rimraf ./public/js/ ./public/index.html",
     "build": "webpack --env.build",
-    "deploy": "./node_modules/now/download/dist/now.exe",
-    "all": "concurrently \"npm run start\" \"npm run start:server\""
+    "deploy": "now --public",
+    "all": "concurrently \"npm run build\" \"npm run start:server\""
   },
   "bin": {
     "webpack": "./node_modules/.bin/webpack",
-    "webpack-dev-server": "node_modules/.bin/webpack-dev-server"
+    "webpack-dev-server": "node_modules/.bin/webpack-dev-server",
+    "now": "node_modules/.bin/now"
   }
 }

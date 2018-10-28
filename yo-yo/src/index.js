@@ -9,7 +9,7 @@
 
 var EventEmitter = require("events");
 var bus = new EventEmitter();
-var Presentation = require("./presentation.js")(bus);
+var Presentation = require("./Presentation.js")(bus);
 var Domain = require("./Domain.js")(bus);
 
 Domain.loadData();
