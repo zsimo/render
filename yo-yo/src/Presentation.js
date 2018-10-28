@@ -47,18 +47,19 @@ module.exports = function (bus) {
     }
 
     function firstColumnOnMouseUp () {
-        var itemIndex = this.getAttribute("data-id")
+        var itemIndex = this.getAttribute("data-index")
         bus.emit("domain.update-first-column-selected-item", itemIndex);
+        bus.emit("domain.update-second-column-selected-item", itemIndex, 0);
     }
     function secondColumnOnMouseUp () {
-        var secondColumnItemIndex = this.getAttribute("data-id");
-        var firstColumnItemIndex = this.getAttribute("data-parent-index");
+        var secondColumnItemIndex = this.getAttribute("data-index");
+        var firstColumnItemIndex = this.getAttribute("data-first-column-index");
         bus.emit("domain.update-second-column-selected-item", firstColumnItemIndex, secondColumnItemIndex);
     }
 
     function firstColumnOnBlur () {
         this.contentEditable = false;
-        var index = this.getAttribute("data-id");
+        var index = this.getAttribute("data-index");
         var newValue = this.innerText;
 
         bus.emit("domain.update-first-column", index, newValue);
@@ -67,8 +68,9 @@ module.exports = function (bus) {
     }
     function secondColumnOnBlur () {
         this.contentEditable = false;
-        var index = this.getAttribute("data-id");
-        var firstColumnItemIndex = this.getAttribute("data-parent-index");
+
+        var index = this.getAttribute("data-index");
+        var firstColumnItemIndex = this.getAttribute("data-first-column-index");
         var newValue = this.innerText;
 
         bus.emit("domain.update-second-column", firstColumnItemIndex, index, newValue);
@@ -99,7 +101,7 @@ module.exports = function (bus) {
                         <input type="radio" id="section-${index}" name="${name}" ${checked}>
                         <label for="section-${index}" 
                             class="section editable"
-                            data-id="${index}"
+                            data-index="${index}"
                             onblur="${firstColumnOnBlur}"
                             onmouseup="${firstColumnOnMouseUp}"
                             ondblclick="${itemOnDblClick}"
@@ -123,8 +125,8 @@ module.exports = function (bus) {
                         <input type="radio" id="second-column-${index}" name="${name}">
                         <label for="second-column-${index}" 
                             class="section editable"
-                            data-id="${index}"
-                            data-parent-index="${firstColumnItemIndex}"
+                            data-index="${index}"
+                            data-first-column-index="${firstColumnItemIndex}"
                             onblur="${secondColumnOnBlur}"
                             onmouseup="${secondColumnOnMouseUp}"
                             ondblclick="${itemOnDblClick}"

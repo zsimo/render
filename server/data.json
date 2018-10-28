@@ -3,61 +3,16 @@
     "name": "1",
     "children": [
       {
-        "name": "d",
-        "checked": true,
-        "content": "simone\nsacchi"
-      },
-      {
-        "name": "dw",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
-        "checked": false,
-        "content": "2"
-      },
-      {
-        "name": "3",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
-        "checked": false
-      },
-      {
-        "name": "4",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
-        "checked": false
-      },
-      {
-        "name": "5",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
-        "checked": false
-      },
-      {
-        "name": "6",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
-        "checked": false
+        "name": "2",
+        "content": "simone",
+        "checked": true
       },
       {
         "name": "",
         "children": [
           {
-            "name": ""
+            "name": "",
+            "content": ""
           }
         ],
         "checked": false
@@ -70,79 +25,15 @@
     "children": [
       {
         "name": "3",
-        "checked": false
-      },
-      {
-        "name": "4",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
-        "checked": false
-      },
-      {
-        "name": "5",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
-        "checked": false
-      },
-      {
-        "name": "6",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
+        "content": "sacchi\n\nssasdsf, fdfd.\nsdssf\n",
         "checked": true
       },
       {
-        "name": "8",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
-        "checked": false
-      },
-      {
         "name": "",
         "children": [
           {
-            "name": ""
-          }
-        ],
-        "checked": false
-      }
-    ],
-    "checked": false
-  },
-  {
-    "name": "3",
-    "children": [
-      {
-        "name": "s",
-        "checked": true,
-        "content": "1"
-      },
-      {
-        "name": "2",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
-        "checked": false,
-        "content": "2"
-      },
-      {
-        "name": "",
-        "children": [
-          {
-            "name": ""
+            "name": "",
+            "content": ""
           }
         ],
         "checked": false
@@ -151,10 +42,12 @@
     "checked": true
   },
   {
-    "name": "4",
+    "name": "uuu",
     "children": [
       {
-        "name": ""
+        "name": "",
+        "content": "",
+        "checked": true
       }
     ],
     "checked": false
@@ -163,7 +56,8 @@
     "name": "",
     "children": [
       {
-        "name": ""
+        "name": "",
+        "content": ""
       }
     ],
     "checked": false
