@@ -16,7 +16,10 @@ var state = {};
 var emptyItem = {
         name: "",
         children: [
-            {name: ""}
+            {
+                name: "",
+                content: ""
+            }
         ]
 };
 
@@ -38,7 +41,7 @@ function addEmptyItem (data) {
     return JSON.parse(JSON.stringify(data));
 }
 
-function getFirstColumneCheckedIndex (state) {
+function getFirstColumnCheckedIndex (state) {
     for (var i = 0, len = state.length; i < len; i += 1) {
         if (state[i].checked) {
             return i;
@@ -69,6 +72,14 @@ module.exports = function (bus) {
 
             bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
 
+            DataAccess.write(state, function () {
+                bus.emit("presentation.log", "");
+            });
+            bus.emit("presentation.log", "saving...");
+        },
+
+        updateThirdColumn: function (firstColumnItemIndex, secondColumnItemIndex, content) {
+            state[firstColumnItemIndex].children[secondColumnItemIndex].content = content;
             DataAccess.write(state, function () {
                 bus.emit("presentation.log", "");
             });
@@ -113,7 +124,10 @@ module.exports = function (bus) {
                 return item;
             });
 
-            bus.emit("presentation.render-third-column", state[firstColumnItemIndex].children[secondColumnItemIndex]);
+            bus.emit("presentation.render-third-column",
+                firstColumnItemIndex,
+                secondColumnItemIndex,
+                state[firstColumnItemIndex].children[secondColumnItemIndex].content);
 
             DataAccess.write(state, function () {
                 bus.emit("presentation.log", "");
@@ -128,7 +142,7 @@ module.exports = function (bus) {
 
                 bus.emit("presentation.render-first-column", state);
 
-                var firstColumnItemIndex = getFirstColumneCheckedIndex(state);
+                var firstColumnItemIndex = getFirstColumnCheckedIndex(state);
                 bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
 
             });

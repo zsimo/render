@@ -76,6 +76,15 @@ module.exports = function (bus) {
         this.onkeydown = itemOnKeyDown
     }
 
+    function thirdColumnOnBlur () {
+        var firstColumnItemIndex = this.getAttribute("data-first-column-index");
+        var secondColumnItemIndex = this.getAttribute("data-second-column-index");
+        var content = this.value;
+        console.log(content);
+
+        bus.emit("domain.update-third-column", firstColumnItemIndex, secondColumnItemIndex, content);
+    }
+
 
     return {
         updateFirstColumn: function (data) {
@@ -130,13 +139,15 @@ module.exports = function (bus) {
         },
 
 
-        updateThirdColumn: function (content) {
+        updateThirdColumn: function (firstColumnItemIndex, secondColumnItemIndex, content) {
             var name = "third-column";
             var height =  window.innerHeight - 90; // - header
-            console.log(height);
             var newHtml = html
                 `<div id="${name}">
-                    <textarea style="height: ${height}px;">${content}</textarea>
+                    <textarea style="height: ${height}px;"
+                    data-first-column-index="${firstColumnItemIndex}"
+                    data-second-column-index="${secondColumnItemIndex}"
+                    onblur="${thirdColumnOnBlur}">${content}</textarea>
                 </div>`;
 
             html.update(thirdColumn, newHtml);

@@ -4,7 +4,8 @@
     "children": [
       {
         "name": "d",
-        "checked": true
+        "checked": true,
+        "content": "simone\nsacchi"
       },
       {
         "name": "dw",
@@ -13,7 +14,8 @@
             "name": ""
           }
         ],
-        "checked": false
+        "checked": false,
+        "content": "2"
       },
       {
         "name": "3",
@@ -43,6 +45,100 @@
         "checked": false
       },
       {
+        "name": "6",
+        "children": [
+          {
+            "name": ""
+          }
+        ],
+        "checked": false
+      },
+      {
+        "name": "",
+        "children": [
+          {
+            "name": ""
+          }
+        ],
+        "checked": false
+      }
+    ],
+    "checked": false
+  },
+  {
+    "name": "2",
+    "children": [
+      {
+        "name": "3",
+        "checked": false
+      },
+      {
+        "name": "4",
+        "children": [
+          {
+            "name": ""
+          }
+        ],
+        "checked": false
+      },
+      {
+        "name": "5",
+        "children": [
+          {
+            "name": ""
+          }
+        ],
+        "checked": false
+      },
+      {
+        "name": "6",
+        "children": [
+          {
+            "name": ""
+          }
+        ],
+        "checked": true
+      },
+      {
+        "name": "8",
+        "children": [
+          {
+            "name": ""
+          }
+        ],
+        "checked": false
+      },
+      {
+        "name": "",
+        "children": [
+          {
+            "name": ""
+          }
+        ],
+        "checked": false
+      }
+    ],
+    "checked": false
+  },
+  {
+    "name": "3",
+    "children": [
+      {
+        "name": "s",
+        "checked": true,
+        "content": "1"
+      },
+      {
+        "name": "2",
+        "children": [
+          {
+            "name": ""
+          }
+        ],
+        "checked": false,
+        "content": "2"
+      },
+      {
         "name": "",
         "children": [
           {
@@ -53,83 +149,6 @@
       }
     ],
     "checked": true
-  },
-  {
-    "name": "2",
-    "children": [
-      {
-        "name": "3"
-      },
-      {
-        "name": "4",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      },
-      {
-        "name": "5",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      },
-      {
-        "name": "6",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      },
-      {
-        "name": "8",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      },
-      {
-        "name": "",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      }
-    ],
-    "checked": false
-  },
-  {
-    "name": "3",
-    "children": [
-      {
-        "name": "s",
-        "checked": false
-      },
-      {
-        "name": "2",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
-        "checked": true
-      },
-      {
-        "name": "",
-        "children": [
-          {
-            "name": ""
-          }
-        ],
-        "checked": false
-      }
-    ],
-    "checked": false
   },
   {
     "name": "4",
