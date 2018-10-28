@@ -4,6 +4,7 @@ var html = require("yo-yo");
 
 var firstColumn = document.getElementById("first-column");
 var secondColumn = document.getElementById("second-column");
+var thirdColumn = document.getElementById("third-column");
 var logArea = document.getElementById("log-area");
 
 module.exports = function (bus) {
@@ -20,10 +21,6 @@ module.exports = function (bus) {
     function itemOnDblClick () {
         this.contentEditable = true;
     }
-    function itemOnMouseUp () {
-        var itemIndex = this.getAttribute("data-id")
-        bus.emit("domain.update-selected-item", itemIndex);
-    }
     function itemOnKeyDown (event) {
 
         if (isvalidKeyCode(event.keyCode)) {
@@ -36,7 +33,6 @@ module.exports = function (bus) {
             this.innerText = "";
         }
     }
-
     function itemOnKeyUp (event) {
 
         if (event.keyCode === 27) {
@@ -48,6 +44,16 @@ module.exports = function (bus) {
                 this.onkeydown = itemOnKeyDown;
             }
         }
+    }
+
+    function firstColumnOnMouseUp () {
+        var itemIndex = this.getAttribute("data-id")
+        bus.emit("domain.update-first-column-selected-item", itemIndex);
+    }
+    function secondColumnOnMouseUp () {
+        var secondColumnItemIndex = this.getAttribute("data-id");
+        var firstColumnItemIndex = this.getAttribute("data-parent-index");
+        bus.emit("domain.update-second-column-selected-item", firstColumnItemIndex, secondColumnItemIndex);
     }
 
     function firstColumnOnBlur () {
@@ -86,11 +92,11 @@ module.exports = function (bus) {
                             class="section editable"
                             data-id="${index}"
                             onblur="${firstColumnOnBlur}"
-                            onmouseup="${itemOnMouseUp}"
+                            onmouseup="${firstColumnOnMouseUp}"
+                            ondblclick="${itemOnDblClick}"
                             tabindex="0"
                             onkeydown="${itemOnKeyDown}"
-                            onkeyup="${itemOnKeyUp}"
-                            ondblclick="${itemOnDblClick}">${item.name}</label>
+                            onkeyup="${itemOnKeyUp}">${item.name}</label>
                     </div>`
                 })}
             </div>`;
@@ -99,10 +105,7 @@ module.exports = function (bus) {
         },
 
         updateSecondColumn: function (firstColumnItemIndex, children) {
-
-
             var name = "second-column";
-
             var newHtml = html
                 `<div id="${name}">
                 ${children.map(function (item, index) {
@@ -114,15 +117,29 @@ module.exports = function (bus) {
                             data-id="${index}"
                             data-parent-index="${firstColumnItemIndex}"
                             onblur="${secondColumnOnBlur}"
+                            onmouseup="${secondColumnOnMouseUp}"
+                            ondblclick="${itemOnDblClick}"
                             tabindex="0"
                             onkeydown="${itemOnKeyDown}"
-                            onkeyup="${itemOnKeyUp}"
-                            ondblclick="${itemOnDblClick}">${item.name}</label>
+                            onkeyup="${itemOnKeyUp}">${item.name}</label>
                     </div>`
                 })}
             </div>`;
 
             html.update(secondColumn, newHtml);
+        },
+
+
+        updateThirdColumn: function (content) {
+            var name = "third-column";
+            var height =  window.innerHeight - 90; // - header
+            console.log(height);
+            var newHtml = html
+                `<div id="${name}">
+                    <textarea style="height: ${height}px;">${content}</textarea>
+                </div>`;
+
+            html.update(thirdColumn, newHtml);
         },
 
 

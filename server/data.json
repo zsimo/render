@@ -3,15 +3,17 @@
     "name": "1",
     "children": [
       {
-        "name": "1"
+        "name": "d",
+        "checked": true
       },
       {
-        "name": "2",
+        "name": "dw",
         "children": [
           {
             "name": ""
           }
-        ]
+        ],
+        "checked": false
       },
       {
         "name": "3",
@@ -19,7 +21,8 @@
           {
             "name": ""
           }
-        ]
+        ],
+        "checked": false
       },
       {
         "name": "4",
@@ -27,7 +30,8 @@
           {
             "name": ""
           }
-        ]
+        ],
+        "checked": false
       },
       {
         "name": "5",
@@ -35,7 +39,8 @@
           {
             "name": ""
           }
-        ]
+        ],
+        "checked": false
       },
       {
         "name": "",
@@ -43,10 +48,11 @@
           {
             "name": ""
           }
-        ]
+        ],
+        "checked": false
       }
     ],
-    "checked": false
+    "checked": true
   },
   {
     "name": "2",
@@ -95,13 +101,23 @@
         ]
       }
     ],
-    "checked": true
+    "checked": false
   },
   {
     "name": "3",
     "children": [
       {
-        "name": "s"
+        "name": "s",
+        "checked": false
+      },
+      {
+        "name": "2",
+        "children": [
+          {
+            "name": ""
+          }
+        ],
+        "checked": true
       },
       {
         "name": "",
@@ -109,7 +125,8 @@
           {
             "name": ""
           }
-        ]
+        ],
+        "checked": false
       }
     ],
     "checked": false

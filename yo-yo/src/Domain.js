@@ -75,7 +75,7 @@ module.exports = function (bus) {
             bus.emit("presentation.log", "saving...");
         },
 
-        updateSelectedItem: function (firstColumnItemIndex) {
+        updateFirstColumnSelectedItem: function (firstColumnItemIndex) {
 
             firstColumnItemIndex = parseInt(firstColumnItemIndex, 10);
             state = state.map(function (item, index) {
@@ -95,6 +95,31 @@ module.exports = function (bus) {
                 bus.emit("presentation.log", "");
             });
             bus.emit("presentation.log", "saving...");
+        },
+
+        updateSecondColumnSelectedItem: function (firstColumnItemIndex, secondColumnItemIndex) {
+
+            firstColumnItemIndex = parseInt(firstColumnItemIndex, 10);
+            secondColumnItemIndex = parseInt(secondColumnItemIndex, 10);
+
+            state[firstColumnItemIndex].children = state[firstColumnItemIndex].children.map(function (item, index) {
+
+                if (index === secondColumnItemIndex) {
+                    item.checked = true;
+                } else {
+                    item.checked = false;
+                }
+
+                return item;
+            });
+
+            bus.emit("presentation.render-third-column", state[firstColumnItemIndex].children[secondColumnItemIndex]);
+
+            DataAccess.write(state, function () {
+                bus.emit("presentation.log", "");
+            });
+            bus.emit("presentation.log", "saving...");
+
         },
 
         loadData: function () {
