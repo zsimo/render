@@ -8,7 +8,6 @@
     "events": "^3.0.0",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.4",
-    "now": "^11.4.6",
     "rimraf": "^2.6.1",
     "sass-loader": "^7.1.0",
     "socket-io": "^1.0.0",
@@ -24,12 +23,10 @@
     "start": "webpack-dev-server",
     "prebuild": "rimraf ./public/js/ ./public/index.html",
     "build": "webpack --env.build",
-    "deploy": "now --public",
     "all": "concurrently \"npm run build\" \"npm run start:server\""
   },
   "bin": {
     "webpack": "./node_modules/.bin/webpack",
-    "webpack-dev-server": "node_modules/.bin/webpack-dev-server",
-    "now": "node_modules/.bin/now"
+    "webpack-dev-server": "node_modules/.bin/webpack-dev-server"
   }
 }
