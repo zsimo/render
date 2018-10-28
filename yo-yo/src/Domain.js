@@ -38,6 +38,14 @@ function addEmptyItem (data) {
     return JSON.parse(JSON.stringify(data));
 }
 
+function getFirstColumneCheckedIndex (state) {
+    for (var i = 0, len = state.length; i < len; i += 1) {
+        if (state[i].checked) {
+            return i;
+        }
+    }
+    return 0;
+}
 
 module.exports = function (bus) {
 
@@ -79,8 +87,12 @@ module.exports = function (bus) {
         loadData: function () {
             DataAccess.read(function (data) {
                 state = addEmptyItem(data);
-                //state = data;
+
                 bus.emit("presentation.render-first-column", state);
+
+                var firstColumnItemIndex = getFirstColumneCheckedIndex(state);
+                bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
+
             });
         }
     };
