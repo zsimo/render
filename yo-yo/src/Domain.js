@@ -55,10 +55,11 @@ module.exports = function (bus) {
             state[index].name = newValue;
             state = addEmptyItem(state);
 
+            bus.emit("presentation.render-first-column", state);
+
             DataAccess.write(state, function () {
                 bus.emit("presentation.log", "");
             });
-            bus.emit("presentation.render-first-column", state);
             bus.emit("presentation.log", "saving...");
         },
 
@@ -66,14 +67,16 @@ module.exports = function (bus) {
             state[firstColumnItemIndex].children[selectedItemIndex].name = newValue;
             state[firstColumnItemIndex].children = addEmptyItem(state[firstColumnItemIndex].children);
 
+            bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
+
             DataAccess.write(state, function () {
                 bus.emit("presentation.log", "");
             });
-            bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
             bus.emit("presentation.log", "saving...");
         },
 
         updateSelectedItem: function (firstColumnItemIndex) {
+
             firstColumnItemIndex = parseInt(firstColumnItemIndex, 10);
             state = state.map(function (item, index) {
 
@@ -86,10 +89,11 @@ module.exports = function (bus) {
                 return item;
             });
 
+            bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
+
             DataAccess.write(state, function () {
                 bus.emit("presentation.log", "");
             });
-            bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
             bus.emit("presentation.log", "saving...");
         },
 
