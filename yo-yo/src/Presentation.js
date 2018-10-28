@@ -4,6 +4,7 @@ var html = require("yo-yo");
 
 var firstColumn = document.getElementById("first-column");
 var secondColumn = document.getElementById("second-column");
+var logArea = document.getElementById("log-area");
 
 module.exports = function (bus) {
 
@@ -124,6 +125,11 @@ module.exports = function (bus) {
             </div>`;
 
             html.update(secondColumn, newHtml);
+        },
+
+
+        log: function (message) {
+            logArea.innerText = message;
         }
 
 

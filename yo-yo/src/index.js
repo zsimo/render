@@ -30,6 +30,9 @@ bus.on("presentation.render-first-column", function (state) {
 bus.on("presentation.render-second-column", function (firstColumnItemIndex, children) {
     Presentation.updateSecondColumn(firstColumnItemIndex, children);
 });
+bus.on("presentation.log", function (message) {
+    Presentation.log(message);
+});
 
 
 
