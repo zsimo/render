@@ -69,10 +69,11 @@ module.exports = function (bus) {
     return {
         updateFirstColumn: function (data) {
             var name = "first-column";
-
+// checked="${item.selected}"
             var newHtml = html
                 `<div id="${name}">
                 ${data.map(function (item, index) {
+                    
                     return html`
                     <div>
                         <input type="radio" id="section-${index}" name="${name}">
@@ -92,13 +93,14 @@ module.exports = function (bus) {
             html.update(firstColumn, newHtml);
         },
 
-        updateSecondColumn: function (firstColumnItemIndex, data) {
+        updateSecondColumn: function (firstColumnItemIndex, children) {
+
 
             var name = "second-column";
 
             var newHtml = html
                 `<div id="${name}">
-                ${data.map(function (item, index) {
+                ${children.map(function (item, index) {
                     return html`
                     <div>
                         <input type="radio" id="second-column-${index}" name="${name}">

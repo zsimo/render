@@ -1,133 +1,74 @@
 [
   {
-    "name": "tt",
-    "selected": true,
+    "name": "1",
+    "children": [
+      {
+        "name": "2"
+      },
+      {
+        "name": "3",
+        "children": [
+          {
+            "name": ""
+          }
+        ]
+      },
+      {
+        "name": "4",
+        "children": [
+          {
+            "name": ""
+          }
+        ]
+      },
+      {
+        "name": "",
+        "children": [
+          {
+            "name": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "2",
     "children": [
       {
         "name": "1"
       },
       {
-        "name": "2"
+        "name": "2",
+        "children": [
+          {
+            "name": ""
+          }
+        ]
       },
       {
-        "name": "ee"
-      },
-      {
-        "name": "ee"
-      },
-      {
-        "name": "eeee"
-      },
-      {
-        "name": "eee"
-      },
-      {
-        "name": "eee"
-      },
-      {
-        "name": "eee"
-      },
-      {
-        "name": "eee"
-      },
-      {
-        "name": "eee"
-      },
-      {
-        "name": "ff"
+        "name": "",
+        "children": [
+          {
+            "name": ""
+          }
+        ]
       }
     ]
   },
   {
-    "name": "rh",
+    "name": "3",
     "children": [
-      {
-        "name": "1"
-      },
-      {
-        "name": "2"
-      },
-      {
-        "name": "3"
-      },
-      {
-        "name": "4"
-      },
-      {
-        "name": "5"
-      },
-      {
-        "name": "6"
-      },
       {
         "name": ""
       }
     ]
   },
   {
-    "name": "yy5",
+    "name": "",
     "children": [
-      {
-        "name": "e45455y"
-      },
       {
         "name": ""
       }
     ]
-  },
-  {
-    "name": "hh",
-    "children": [
-      {
-        "name": "ergregreg"
-      },
-      {
-        "name": ""
-      }
-    ]
-  },
-  {
-    "name": "sdfdfd",
-    "children": [
-      {
-        "name": "ddd"
-      },
-      {
-        "name": ""
-      }
-    ]
-  },
-  {
-    "name": "ddd"
-  },
-  {
-    "name": "eee"
-  },
-  {
-    "name": "ee"
-  },
-  {
-    "name": "9"
-  },
-  {
-    "name": "ee"
-  },
-  {
-    "name": "eee"
-  },
-  {
-    "name": "dsdsfd"
-  },
-  {
-    "name": "dfs"
-  },
-  {
-    "name": "eee"
-  },
-  {
-    "name": "eee"
-  },
-  {
-    "name": "ff"
   }
 ]

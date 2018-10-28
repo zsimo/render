@@ -14,7 +14,10 @@ var DataAccess = require("./DataAccess");
 var state = {};
 
 var emptyItem = {
-    name: ""
+        name: "",
+        children: [
+            {name: ""}
+        ]
 };
 
 /**
@@ -32,7 +35,7 @@ function addEmptyItem (data) {
         data.push(emptyItem);
     }
 
-    return data;
+    return JSON.parse(JSON.stringify(data));
 }
 
 
@@ -42,29 +45,30 @@ module.exports = function (bus) {
 
         updateFirstColumn: function (index, newValue) {
             state[index].name = newValue;
+            state = addEmptyItem(state);
             DataAccess.write(state);
+            bus.emit("presentation.update-first-column", state);
         },
 
         updateSecondColumn: function (firstColumnItemIndex, selectedItemIndex, newValue) {
 
-            if (!state[firstColumnItemIndex].children) {
-                state[firstColumnItemIndex].children = [emptyItem];
-            }
-
             state[firstColumnItemIndex].children[selectedItemIndex].name = newValue;
+            state[firstColumnItemIndex].children = addEmptyItem(state[firstColumnItemIndex].children);
 
             DataAccess.write(state);
+            bus.emit("presentation.update-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
         },
 
         updateSelectedItem: function (firstColumnItemIndex) {
-            var children = state[firstColumnItemIndex].hasOwnProperty("children") ? state[firstColumnItemIndex].children : [];
-            bus.emit("presentation.update-second-column", firstColumnItemIndex, addEmptyItem(children));
+
+            bus.emit("presentation.update-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
         },
 
         loadData: function () {
             DataAccess.read(function (data) {
-                state = data;
-                bus.emit("presentation.update-first-column", addEmptyItem(state));
+                state = addEmptyItem(data);
+                //state = data;
+                bus.emit("presentation.update-first-column", state);
             });
         }
     };
