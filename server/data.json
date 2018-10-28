@@ -1,7 +1,6 @@
 [
   {
     "name": "1",
-    "checked": true,
     "children": [
       {
         "name": "1"
@@ -30,13 +29,22 @@
           }
         ]
       }
-    ]
+    ],
+    "checked": false
   },
   {
-    "name": "yyy",
+    "name": "2",
     "children": [
       {
-        "name": "4"
+        "name": "3"
+      },
+      {
+        "name": "4",
+        "children": [
+          {
+            "name": ""
+          }
+        ]
       },
       {
         "name": "5",
@@ -47,14 +55,6 @@
         ]
       },
       {
-        "name": "7",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      },
-      {
         "name": "",
         "children": [
           {
@@ -66,26 +66,10 @@
     "checked": false
   },
   {
-    "name": "yyy",
+    "name": "3",
     "children": [
       {
-        "name": "8"
-      },
-      {
-        "name": "9",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      },
-      {
-        "name": "99",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
+        "name": "s"
       },
       {
         "name": "",
@@ -96,126 +80,7 @@
         ]
       }
     ],
-    "checked": false
-  },
-  {
-    "name": "hh",
-    "children": [
-      {
-        "name": "hh"
-      },
-      {
-        "name": "hhhh",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      },
-      {
-        "name": "hhhyy",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      },
-      {
-        "name": "yhy",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      },
-      {
-        "name": "yhy",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      },
-      {
-        "name": "",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      }
-    ],
-    "checked": false
-  },
-  {
-    "name": "5",
-    "children": [
-      {
-        "name": "1"
-      },
-      {
-        "name": "2",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      },
-      {
-        "name": "",
-        "children": [
-          {
-            "name": ""
-          }
-        ]
-      }
-    ],
-    "checked": false
-  },
-  {
-    "name": "s",
-    "children": [
-      {
-        "name": ""
-      }
-    ],
-    "checked": false
-  },
-  {
-    "name": "dddd",
-    "children": [
-      {
-        "name": ""
-      }
-    ],
-    "checked": false
-  },
-  {
-    "name": "yhyhy",
-    "children": [
-      {
-        "name": ""
-      }
-    ],
-    "checked": false
-  },
-  {
-    "name": "thyth",
-    "children": [
-      {
-        "name": ""
-      }
-    ],
-    "checked": false
-  },
-  {
-    "name": "ss",
-    "children": [
-      {
-        "name": ""
-      }
-    ],
-    "checked": false
+    "checked": true
   },
   {
     "name": "",

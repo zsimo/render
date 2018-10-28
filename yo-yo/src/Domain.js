@@ -59,7 +59,6 @@ module.exports = function (bus) {
         },
 
         updateSecondColumn: function (firstColumnItemIndex, selectedItemIndex, newValue) {
-
             state[firstColumnItemIndex].children[selectedItemIndex].name = newValue;
             state[firstColumnItemIndex].children = addEmptyItem(state[firstColumnItemIndex].children);
 

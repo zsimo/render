@@ -19,7 +19,8 @@ module.exports = function (bus) {
     function itemOnDblClick () {
         this.contentEditable = true;
     }
-    function itemOnMouseDown () {
+    function itemOnMouseUp () {
+        console.log("mousedown");
         var itemIndex = this.getAttribute("data-id")
         bus.emit("domain.update-selected-item", itemIndex);
     }
@@ -53,16 +54,21 @@ module.exports = function (bus) {
         this.contentEditable = false;
         var index = this.getAttribute("data-id");
         var newValue = this.innerText;
-        this.onkeydown = itemOnKeyDown
+
         bus.emit("domain.update-first-column", index, newValue);
+
+        this.onkeydown = itemOnKeyDown;
     }
     function secondColumnOnBlur () {
+        console.log("blur");
         this.contentEditable = false;
         var index = this.getAttribute("data-id");
         var firstColumnItemIndex = this.getAttribute("data-parent-index");
         var newValue = this.innerText;
-        this.onkeydown = itemOnKeyDown
+
         bus.emit("domain.update-second-column", firstColumnItemIndex, index, newValue);
+
+        this.onkeydown = itemOnKeyDown
     }
 
 
@@ -81,7 +87,7 @@ module.exports = function (bus) {
                             class="section editable"
                             data-id="${index}"
                             onblur="${firstColumnOnBlur}"
-                            onmousedown="${itemOnMouseDown}"
+                            onmouseup="${itemOnMouseUp}"
                             tabindex="0"
                             onkeydown="${itemOnKeyDown}"
                             onkeyup="${itemOnKeyUp}"
