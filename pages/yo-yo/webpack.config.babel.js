@@ -1,5 +1,9 @@
 "use strict";
 
+var path = require("path");
+var mainJsDir = path.resolve(__dirname, "../", "../", "resources", "js");
+
+
 module.exports = function (env = {}) {
 
     let path = require("path");
@@ -46,7 +50,7 @@ module.exports = function (env = {}) {
 
         resolve: {
             extensions: [".js", ".ts", ".json", ".css", ".scss", ".sass", '.jpg'],
-            modules: ['node_modules', path.resolve(__dirname, "src")]
+            modules: ['node_modules', mainJsDir, path.resolve(__dirname, "src")]
         },
 
         devServer: {

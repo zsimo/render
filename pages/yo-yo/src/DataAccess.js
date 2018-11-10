@@ -8,7 +8,7 @@
  * @version 2018/10/27
  */
 
-var configs = require("../../configs.json");
+var configs = require("configs.json");
 var socket = require('socket.io-client')(`${configs.SERVER.HOST}:${configs.SERVER.PORT}`);
 
 module.exports = {

@@ -81,7 +81,7 @@
         "checked": false
       }
     ],
-    "checked": true
+    "checked": false
   },
   {
     "name": "3",
@@ -120,6 +120,17 @@
           }
         ],
         "checked": false
+      }
+    ],
+    "checked": true
+  },
+  {
+    "name": "4",
+    "children": [
+      {
+        "name": "",
+        "content": "",
+        "checked": true
       }
     ],
     "checked": false

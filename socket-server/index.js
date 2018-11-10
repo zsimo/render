@@ -4,7 +4,7 @@
 
 "use strict";
 
-var configs = require("../configs.json");
+var configs = require("../resources/js/configs.json");
 
 var app = require("express")();
 var fs = require("fs");
