@@ -21,6 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/pages/yo-yo', function () {
-    return view('pages.yo-yo');
+    return view('pages.yo-yo', ['page' => 'yo-yo']);
 })->name('yo-yo');
 
