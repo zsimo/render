@@ -1,7 +1,9 @@
 "use strict";
 
+var appName = "yo-yo";
 var path = require("path");
-var mainJsDir = path.resolve(__dirname, "../", "../", "resources", "js");
+var appRoot = path.resolve(__dirname, "../", "../");
+var mainJsDir = path.resolve(appRoot, "resources", "js");
 
 
 module.exports = function (env = {}) {
@@ -9,14 +11,14 @@ module.exports = function (env = {}) {
     let path = require("path");
     let HtmlWebpackPlugin = require('html-webpack-plugin');
 
-    const publicPath = path.resolve(__dirname, 'public');
-    const jsPath = path.resolve(publicPath, 'js');
+    const localPublicPath = path.resolve(__dirname, 'public');
+    const compiledPath = path.resolve(appRoot, 'public', 'compiled', appName);
 
     let HtmlWebpackPluginOption = {
         template: "./src/index.html"
     };
     if (env.build) {
-        HtmlWebpackPluginOption.filename = publicPath + "/index.html";
+        HtmlWebpackPluginOption.filename = localPublicPath + "/index.html";
     }
 
     console.log(env);
@@ -29,7 +31,7 @@ module.exports = function (env = {}) {
         ],
 
         output: {
-            path: jsPath,
+            path: compiledPath,
             filename: 'bundle.js'
         },
 
@@ -54,7 +56,7 @@ module.exports = function (env = {}) {
         },
 
         devServer: {
-            contentBase: publicPath
+            contentBase: localPublicPath
         },
 
         plugins: [
