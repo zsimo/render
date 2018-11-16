@@ -24,7 +24,5 @@ Route::get('/pages/yo-yo', function () {
     return view('pages.yo-yo', ['page' => 'yo-yo']);
 })->name('yo-yo');
 
-//Route::get("/test/read", function (Request $request) {
-//    return $request->user();
-//});
+
 

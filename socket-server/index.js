@@ -4,7 +4,8 @@
 
 "use strict";
 
-var configs = require("../resources/js/configs.json");
+var path = require("path");
+var appRoot = path.resolve(__dirname, "../");
 
 var app = require("express")();
 var fs = require("fs");
@@ -12,7 +13,9 @@ var http = require("http");
 var server = http.Server(app);
 var io = require("socket.io")(server);
 
-var dataFile = "./data.json";
+var configs = require(path.resolve(appRoot, "resources", "js", "configs.json"));
+
+var dataFile = path.resolve(appRoot, "database", "data.json");
 
 
 server.listen(configs.SERVER.PORT);

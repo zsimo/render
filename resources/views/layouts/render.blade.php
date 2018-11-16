@@ -21,6 +21,11 @@
     <div id="second-column"></div>
     <div id="third-column"></div>
 
+
+    <script>
+        window.Render = {!! json_encode($view_shared_data) !!};
+    </script>
+
     {{--<script type="text/javascript" src="{{ asset('compiled/'. $page .'/bundle.js') }}"></script>--}}
     <script type="text/javascript" src="http://localhost:8001/bundle.js"></script>
 
