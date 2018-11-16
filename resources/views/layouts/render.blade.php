@@ -21,7 +21,8 @@
     <div id="second-column"></div>
     <div id="third-column"></div>
 
-    <script type="text/javascript" src="{{ asset('compiled/yo-yo/bundle.js') }}"></script>
+    {{--<script type="text/javascript" src="{{ asset('compiled/'. $page .'/bundle.js') }}"></script>--}}
+    <script type="text/javascript" src="http://localhost:8001/bundle.js"></script>
 
 </body>
 </html>

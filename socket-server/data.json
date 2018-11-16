@@ -5,7 +5,7 @@
       {
         "name": "a",
         "content": "x",
-        "checked": true
+        "checked": false
       },
       {
         "name": "b",
@@ -15,7 +15,7 @@
             "content": ""
           }
         ],
-        "checked": false,
+        "checked": true,
         "content": "y"
       },
       {
@@ -48,7 +48,7 @@
       {
         "name": "d",
         "content": "sacchi\n\nssasdsf, fdfd.\nsdssf\n",
-        "checked": true
+        "checked": false
       },
       {
         "name": "e",
@@ -68,7 +68,7 @@
             "content": ""
           }
         ],
-        "checked": false
+        "checked": true
       },
       {
         "name": "",
@@ -128,9 +128,19 @@
     "name": "4",
     "children": [
       {
-        "name": "",
+        "name": "l",
         "content": "",
         "checked": true
+      },
+      {
+        "name": "",
+        "children": [
+          {
+            "name": "",
+            "content": ""
+          }
+        ],
+        "checked": false
       }
     ],
     "checked": false

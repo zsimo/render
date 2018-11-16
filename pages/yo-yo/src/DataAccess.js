@@ -25,5 +25,16 @@ module.exports = {
         if (callback) {
             socket.on("reading_done", callback);
         }
+        fetch('http://localhost:8000/api/read', {
+            method: 'get'
+        })
+            //.then(response => response.json())
+            .then(function (response) {
+                return response.json()
+            })
+            .then(callback)
+            .catch(function (error) {
+                throw new Error(error);
+            });
     }
 };
