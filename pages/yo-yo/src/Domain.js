@@ -11,8 +11,6 @@
 
 var configs = require("configs.js");
 
-// var API_SERVER = "socket";
-
 var DataAccess = require("./DataAccess/" + configs.API_SERVER + ".js");
 
 var state = {};

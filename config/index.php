@@ -7,6 +7,11 @@
  */
 
 
+$webpack_dev_server_url = env('WEBPACK_DEV_SERVER_URL', "http://localhost/");
+if (substr("$webpack_dev_server_url", -1) !== '/') {
+    $webpack_dev_server_url .= "/";
+}
+
 return [
 
     /*
@@ -18,6 +23,8 @@ return [
     |
     */
 
-    'api_server' => env('API_SERVER_TYPE', 'http')
+    'api_server' => env('API_SERVER_TYPE', 'http'),
+
+    'webpack_dev_server_url' => $webpack_dev_server_url
 
 ];

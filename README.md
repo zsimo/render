@@ -1,5 +1,7 @@
 # render
 
+- composer dump autoload
+- php artisan serve
 - php artisan make:controller
 
 
