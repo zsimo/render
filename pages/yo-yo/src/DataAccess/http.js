@@ -10,6 +10,8 @@
 
 var _ajaxTimeOut;
 var _ajaxDelay = 100;
+var token = document.querySelector('meta[name="csrf-token"]').content;
+
 
 module.exports = {
 
@@ -20,8 +22,10 @@ module.exports = {
             fetch('http://localhost:8000/api/write', {
                 method: 'post',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': token
                 },
+
                 body: JSON.stringify(data)
             })
                 .then(callback)

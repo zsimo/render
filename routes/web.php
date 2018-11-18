@@ -25,4 +25,6 @@ Route::get('/pages/yo-yo', function () {
 })->name('yo-yo');
 
 
+Route::get("/api/read", 'DataController@read');
+Route::post("/api/write", 'DataController@write');
 
