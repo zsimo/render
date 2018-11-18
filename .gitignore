@@ -2,6 +2,7 @@ node_modules/
 compiled/
 /public/hot
 /public/storage
+/public/dist
 /storage/*.key
 /vendor
 /.idea
@@ -14,4 +15,6 @@ yarn-error.log
 .env
 .htaccess
 .phpunit.result.cache
+
+config/webpack_manifest.php
 
