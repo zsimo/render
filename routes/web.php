@@ -21,6 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/pages/yo-yo', function () {
+
+    if (App::environment('production')) {
+        header("Content-Security-Policy: script-src 'nonce-" . csrf_token() . "'");
+    }
+
     return view('pages.yo-yo', ['page' => 'yo-yo']);
 })->name('yo-yo');
 

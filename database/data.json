@@ -40,7 +40,7 @@
                 "checked": false
             }
         ],
-        "checked": false
+        "checked": true
     },
     {
         "name": "2",
@@ -81,7 +81,7 @@
                 "checked": false
             }
         ],
-        "checked": true
+        "checked": false
     },
     {
         "name": "3",
