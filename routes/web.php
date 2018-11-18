@@ -20,16 +20,22 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/pages/yo-yo', function () {
+Route::middleware(['auth'])->group(function () {
 
-    if (App::environment('production')) {
-        header("Content-Security-Policy: script-src 'nonce-" . csrf_token() . "'");
-    }
+    Route::get('/pages/yo-yo', function () {
 
-    return view('pages.yo-yo', ['page' => 'yo-yo']);
-})->name('yo-yo');
+        if (App::environment('production')) {
+            header("Content-Security-Policy: script-src 'nonce-" . csrf_token() . "'");
+        }
+
+        return view('pages.yo-yo', ['page' => 'yo-yo']);
+    })->name('yo-yo');
 
 
-Route::get("/api/read", 'DataController@read');
-Route::post("/api/write", 'DataController@write');
+    Route::get("/api/read", 'DataController@read');
+    Route::post("/api/write", 'DataController@write');
+
+});
+
+
 
