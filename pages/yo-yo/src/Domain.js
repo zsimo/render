@@ -62,8 +62,10 @@ module.exports = function (bus) {
 
             bus.emit("presentation.render-first-column", state);
 
+            var start = Date.now();
             DataAccess.write(state, function () {
                 bus.emit("presentation.log", "");
+                console.log(Date.now() - start);
             });
             bus.emit("presentation.log", "saving...");
         },

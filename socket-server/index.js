@@ -13,13 +13,13 @@ var http = require("http");
 var server = http.Server(app);
 var io = require("socket.io")(server);
 
-var configs = require(path.resolve(appRoot, "resources", "js", "configs.json"));
+var configs = require(path.resolve(appRoot, "resources", "js", "configs.js"));
 
 var dataFile = path.resolve(appRoot, "database", "data.json");
 
 
-server.listen(configs.SERVER.PORT);
-console.log("socket listen on port: " + configs.SERVER.PORT);
+server.listen(configs.SERVER.SOCKET.PORT);
+console.log("socket listen on port: " + configs.SERVER.SOCKET.PORT);
 
 io.on("connection", function(socket){
 

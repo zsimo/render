@@ -12,6 +12,11 @@ var _ajaxTimeOut;
 var _ajaxDelay = 100;
 var token = document.querySelector('meta[name="csrf-token"]').content;
 
+var baseUrl = window.Render.base_url;
+if (baseUrl.slice(-1) !== "/") {
+    baseUrl += "/";
+}
+
 
 module.exports = {
 
@@ -19,11 +24,11 @@ module.exports = {
         clearTimeout(_ajaxTimeOut);
 
         _ajaxTimeOut = setTimeout(function () {
-            fetch('http://localhost:8000/api/write', {
-                method: 'post',
+            fetch(baseUrl + "api/write", {
+                method: "post",
                 headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': token
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": token
                 },
 
                 body: JSON.stringify(data)
@@ -38,8 +43,8 @@ module.exports = {
     },
 
     read: function (callback) {
-        fetch('http://localhost:8000/api/read', {
-            method: 'get'
+        fetch(baseUrl + "api/read", {
+            method: "get"
         })
             .then(function (response) {
                 return response.json();

@@ -3,6 +3,7 @@ compiled/
 /public/hot
 /public/storage
 /public/dist
+/database/users
 /storage/*.key
 /vendor
 /.idea

@@ -182,7 +182,8 @@
         "children": [
             {
                 "name": null,
-                "content": null
+                "content": null,
+                "checked": true
             }
         ],
         "checked": false
