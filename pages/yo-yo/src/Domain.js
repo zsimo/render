@@ -54,6 +54,21 @@ function getFirstColumnCheckedIndex (state) {
 
 module.exports = function (bus) {
 
+    var write = (function () {
+        var previousDataString;
+
+        return function (data) {
+            var start = Date.now();
+            console.log(data);
+            DataAccess.write(data, function () {
+                bus.emit("presentation.log", "");
+                console.log(Date.now() - start);
+            });
+            bus.emit("presentation.log", "saving...");
+        };
+    }());
+
+
     return {
 
         updateFirstColumn: function (index, newValue) {
@@ -62,12 +77,7 @@ module.exports = function (bus) {
 
             bus.emit("presentation.render-first-column", state);
 
-            var start = Date.now();
-            DataAccess.write(state, function () {
-                bus.emit("presentation.log", "");
-                console.log(Date.now() - start);
-            });
-            bus.emit("presentation.log", "saving...");
+            write(state);
         },
 
         updateSecondColumn: function (firstColumnItemIndex, selectedItemIndex, newValue) {
@@ -76,18 +86,12 @@ module.exports = function (bus) {
 
             bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
 
-            DataAccess.write(state, function () {
-                bus.emit("presentation.log", "");
-            });
-            bus.emit("presentation.log", "saving...");
+            write(state);
         },
 
         updateThirdColumn: function (firstColumnItemIndex, secondColumnItemIndex, content) {
             state[firstColumnItemIndex].children[secondColumnItemIndex].content = content;
-            DataAccess.write(state, function () {
-                bus.emit("presentation.log", "");
-            });
-            bus.emit("presentation.log", "saving...");
+            write(state);
         },
 
         updateFirstColumnSelectedItem: function (firstColumnItemIndex) {
@@ -106,10 +110,7 @@ module.exports = function (bus) {
 
             bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
 
-            DataAccess.write(state, function () {
-                bus.emit("presentation.log", "");
-            });
-            bus.emit("presentation.log", "saving...");
+            write(state);
         },
 
         updateSecondColumnSelectedItem: function (firstColumnItemIndex, secondColumnItemIndex) {
@@ -133,10 +134,7 @@ module.exports = function (bus) {
                 secondColumnItemIndex,
                 state[firstColumnItemIndex].children[secondColumnItemIndex].content);
 
-            DataAccess.write(state, function () {
-                bus.emit("presentation.log", "");
-            });
-            bus.emit("presentation.log", "saving...");
+            write(state);
 
         },
 
