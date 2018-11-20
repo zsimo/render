@@ -36,10 +36,10 @@ class DataController extends Controller
 
             if(!File::exists($usersDir)) {
                 File::makeDirectory($usersDir, 0777, true, true);
-                if(!File::exists($userDir)) {
-                    File::makeDirectory($userDir, 0777, true, true);
-                    file_put_contents($this->dataFile, json_encode([], JSON_PRETTY_PRINT));
-                }
+            }
+            if(!File::exists($userDir)) {
+                File::makeDirectory($userDir, 0777, true, true);
+                file_put_contents($this->dataFile, json_encode([], JSON_PRETTY_PRINT));
             }
 
         } else {
