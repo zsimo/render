@@ -12,11 +12,24 @@ class DataController extends Controller
 
     private $dataFile;
 
-    public function __construct()
+
+    private function getDataFile()
     {
-        if (!Auth::check()) {
+        if (Auth::check()) {
             $userID = Auth::id();
-            $userID = '2';
+            $usersDir = database_path('users');
+            $userDir = $usersDir . '/' . $userID;
+            return $userDir . '/' . 'data.json';
+
+        } else {
+            return database_path('data.json');
+        }
+    }
+
+    public function read () {
+
+        if (Auth::check()) {
+            $userID = Auth::id();
             $usersDir = database_path('users');
             $userDir = $usersDir . '/' . $userID;
             $this->dataFile = $userDir . '/' . 'data.json';
@@ -33,13 +46,12 @@ class DataController extends Controller
             $this->dataFile = database_path('data.json');
         }
 
-    }
 
-    public function read () {
         return file_get_contents($this->dataFile);
     }
 
     public function write (Request $request) {
+        $this->dataFile = $this->getDataFile();
         file_put_contents($this->dataFile, json_encode($request->all(), JSON_PRETTY_PRINT));
     }
 }
