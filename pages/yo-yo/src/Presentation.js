@@ -46,11 +46,17 @@ module.exports = function (bus) {
         }
     }
 
+    /**
+     * mark the item as selected (different background)
+     */
     function firstColumnOnMouseUp () {
         var itemIndex = this.getAttribute("data-index")
         bus.emit("domain.update-first-column-selected-item", itemIndex);
         bus.emit("domain.update-second-column-selected-item", itemIndex, 0);
     }
+    /**
+     * mark the item as selected (different background)
+     */
     function secondColumnOnMouseUp () {
         var secondColumnItemIndex = this.getAttribute("data-index");
         var firstColumnItemIndex = this.getAttribute("data-first-column-index");
