@@ -7,3 +7,10 @@
 
 
 API_SERVER_TYPE=socket || http
+
+
+
+- security
+    - XSSI (remote JavaScript inclusion) 'for (;;);'
+    - nonce
+    - csrf token 
