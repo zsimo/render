@@ -24,7 +24,7 @@ module.exports = function (bus) {
     function itemOnKeyDown (event) {
 
         if (isvalidKeyCode(event.keyCode)) {
-            // let react to the onkeydown event only once
+            // let react to the onkeydown event only once, by removing the callback function
             this.onkeydown = "";
 
             this.setAttribute("data-previous-text", this.innerText);
