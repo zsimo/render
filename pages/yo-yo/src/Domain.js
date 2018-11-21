@@ -59,7 +59,6 @@ module.exports = function (bus) {
 
         return function (data) {
             var start = Date.now();
-            console.log(data);
             DataAccess.write(data, function () {
                 bus.emit("presentation.log", "");
                 console.log(Date.now() - start);

@@ -44,14 +44,20 @@ module.exports = {
 
     read: function (callback) {
         fetch(baseUrl + "api/read", {
-            method: "get"
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
+            }
         })
-            .then(function (response) {
-                return response.json();
-            })
-            .then(callback)
-            .catch(function (error) {
-                throw new Error(error);
-            });
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (data) {
+            return JSON.parse(data.replace(/^for \(;;\);/, ''));
+        })
+        .then(callback)
+        .catch(function (error) {
+            throw new Error(error);
+        });
     }
 };
