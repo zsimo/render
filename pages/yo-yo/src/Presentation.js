@@ -25,8 +25,10 @@ module.exports = function (bus) {
                 (keycode > 218 && keycode < 223);
     }
 
-    function itemOnDblClick () {
+    function itemOnDblClick (e) {
+        e.preventDefault();
         this.contentEditable = true;
+        this.focus();
     }
     function itemOnKeyDown (event) {
 
@@ -117,7 +119,7 @@ module.exports = function (bus) {
                             data-index="${index}"
                             onblur="${firstColumnOnBlur}"
                             onmouseup="${firstColumnOnMouseUp}"
-                            ondblclick="${itemOnDblClick}"
+                            onclick="${itemOnDblClick}"
                             tabindex="0"
                             onkeydown="${itemOnKeyDown}"
                             onkeyup="${itemOnKeyUp}">${item.name}</label>
@@ -142,7 +144,7 @@ module.exports = function (bus) {
                             data-first-column-index="${firstColumnItemIndex}"
                             onblur="${secondColumnOnBlur}"
                             onmouseup="${secondColumnOnMouseUp}"
-                            ondblclick="${itemOnDblClick}"
+                            onclick="${itemOnDblClick}"
                             tabindex="0"
                             onkeydown="${itemOnKeyDown}"
                             onkeyup="${itemOnKeyUp}">${item.name}</label>

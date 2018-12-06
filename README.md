@@ -14,3 +14,5 @@ API_SERVER_TYPE=socket || http
     - XSSI (remote JavaScript inclusion) using 'for (;;);'
     - Content-Security-Policy: script-src with [nonce](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#Unsafe_inline_script)
     - CSRF token 
+    
+    
