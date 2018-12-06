@@ -15,4 +15,5 @@ API_SERVER_TYPE=socket || http
     - Content-Security-Policy: script-src with [nonce](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#Unsafe_inline_script)
     - CSRF token 
     
-    
+- Optimizations
+    - Minify Html via laravel-page-speed
