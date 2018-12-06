@@ -13,7 +13,10 @@
 <body>
 
     <div id="header">
-        <h2>Render {{$page}}</h2>
+        <h2>
+            Render {{$page}}
+            <small style="font-weight: normal;"><i id="app-version"></i></small>
+        </h2>
         <span id="log-area"></span>
     </div>
 

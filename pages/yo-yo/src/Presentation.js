@@ -1,11 +1,18 @@
 "use strict";
 
 var html = require("yo-yo");
+var configs = require("./configs.js");
 
 var firstColumn = document.getElementById("first-column");
 var secondColumn = document.getElementById("second-column");
 var thirdColumn = document.getElementById("third-column");
 var logArea = document.getElementById("log-area");
+
+document.addEventListener("DOMContentLoaded", function() {
+    try {
+        document.getElementById("app-version").innerText = configs.VERSION;
+    } catch (e) {}
+});
 
 module.exports = function (bus) {
 

@@ -9,7 +9,7 @@
  * @version 2018/10/27
  */
 
-var configs = require("configs.js");
+var configs = require("./configs.js");
 
 var DataAccess = require("./DataAccess/" + configs.API_SERVER + ".js");
 
