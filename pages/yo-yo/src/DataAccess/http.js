@@ -18,10 +18,10 @@ if (baseUrl.slice(-1) !== "/") {
 }
 
 function redirectIfNotAllowed (response) {
-    if (respone && respone.status && respone.status !== 200) {
+    if (response && response.status && response.status !== 200) {
         window.location = baseUrl + "login";
     }
-    return respone;
+    return response;
 }
 function onError (error) {
     throw new Error(error);
