@@ -97,7 +97,6 @@ module.exports = function (bus) {
         var firstColumnItemIndex = this.getAttribute("data-first-column-index");
         var secondColumnItemIndex = this.getAttribute("data-second-column-index");
         var content = this.value;
-        console.log(content);
 
         bus.emit("domain.update-third-column", firstColumnItemIndex, secondColumnItemIndex, content);
     }

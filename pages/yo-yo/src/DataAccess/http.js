@@ -17,6 +17,15 @@ if (baseUrl.slice(-1) !== "/") {
     baseUrl += "/";
 }
 
+function redirectIfNotAllowed (response) {
+    if (respone && respone.status && respone.status !== 200) {
+        window.location = baseUrl + "login";
+    }
+    return respone;
+}
+function onError (error) {
+    throw new Error(error);
+}
 
 module.exports = {
 
@@ -30,13 +39,11 @@ module.exports = {
                     "Content-Type": "application/json",
                     "X-CSRF-TOKEN": token
                 },
-
                 body: JSON.stringify(data)
             })
-                .then(callback)
-                .catch(function (error) {
-                    throw new Error(error);
-                });
+            .then(redirectIfNotAllowed)
+            .then(callback)
+            .catch(onError);
         }, _ajaxDelay);
 
 
@@ -49,6 +56,7 @@ module.exports = {
                 "Content-Type": "application/json",
             }
         })
+        .then(redirectIfNotAllowed)
         .then(function (response) {
             return response.text();
         })
@@ -56,8 +64,6 @@ module.exports = {
             return JSON.parse(data.replace(/^for \(;;\);/, ''));
         })
         .then(callback)
-        .catch(function (error) {
-            throw new Error(error);
-        });
+        .catch(onError);
     }
 };
