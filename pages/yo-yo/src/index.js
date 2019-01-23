@@ -6,7 +6,14 @@
  */
 
 
-
+/**
+ * this index is really like mediator
+ *
+ * @see https://app.pluralsight.com/library/courses/javascript-practical-design-patterns/table-of-contents
+ *
+ * @author Simone Sacchi
+ * @version 2019/01/23
+ */
 var EventEmitter = require("events");
 var bus = new EventEmitter();
 var Presentation = require("./Presentation.js")(bus);
