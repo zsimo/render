@@ -1,0 +1,88 @@
+<first-column>
+
+    <div id="first-column">
+
+      <div each={ item, i in state }>
+        <input type="radio" id="section-{i}" name="{item.name}" checked="{item.checked}">
+        <label for="section-{i}"
+               class="section editable"
+               data-index="{i}"
+               onblur="{firstColumnOnBlur}"
+               onmouseup="{firstColumnOnMouseUp}"
+               onclick="{itemOnDblClick}"
+               tabindex="0"
+               onkeydown="{itemOnKeyDown}"
+               onkeyup="{itemOnKeyUp}">{item.name}</label>
+      </div>
+    </div>
+
+  <script>
+
+    var self = this;
+
+
+    this.on("mount", function () {
+      opts.bus.on("presentation.render-first-column", function (state) {
+        self.state = state;
+        self.update();
+      });
+
+    });
+
+
+
+    this.firstColumnOnBlur = function (event) {
+
+      var target = event.target;
+      target.contentEditable = false;
+      var index = target.getAttribute("data-index");
+      var newValue = target.innerText;
+
+      opts.bus.emit("domain.update-first-column", index, newValue);
+
+      target.onkeydown = this.itemOnKeyDown;
+    }
+
+    /**
+     * mark the item as selected (different background)
+     */
+    this.firstColumnOnMouseUp = function (event) {
+      var itemIndex = event.target.getAttribute("data-index")
+      opts.bus.emit("domain.update-first-column-selected-item", itemIndex);
+      opts.bus.emit("domain.update-second-column-selected-item", itemIndex, 0);
+    }
+    this.itemOnDblClick = function (event) {
+      event.preventDefault();
+      event.target.contentEditable = true;
+      event.target.focus();
+    }
+    this.itemOnKeyDown = function (event) {
+
+      if (isvalidKeyCode(event.keyCode)) {
+        var target = event.target;
+        // let react to the onkeydown event only once, by removing the callback function
+        target.onkeydown = "";
+
+        target.setAttribute("data-previous-text", target.innerText);
+
+        target.contentEditable = true;
+        target.innerText = "";
+      }
+    }
+
+    this.itemOnKeyUp = function (event) {
+
+      if (event.keyCode === 27) {
+        var target = event.target;
+        var previousText = target.getAttribute("data-previous-text");
+        if (previousText) {
+          target.innerText = previousText;
+          target.contentEditable = false;
+          target.removeAttribute("data-previous-text");
+          target.onkeydown = itemOnKeyDown;
+        }
+      }
+    }
+
+  </script>
+</first-column>
