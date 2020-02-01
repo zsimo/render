@@ -20,9 +20,11 @@
         <span id="log-area"></span>
     </div>
 
-    <div id="first-column"></div>
-    <div id="second-column"></div>
-    <div id="third-column"></div>
+    @section('main-content')
+        <div id="first-column"></div>
+        <div id="second-column"></div>
+        <div id="third-column"></div>
+    @show
 
 
     @include('partials.js')
