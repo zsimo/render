@@ -31,6 +31,15 @@ Route::middleware(['auth'])->group(function () {
         return view('pages.yo-yo', ['page' => 'yo-yo']);
     })->name('yo-yo');
 
+    Route::get('/pages/riot', function () {
+
+        if (App::environment('production')) {
+            header("Content-Security-Policy: script-src 'nonce-" . csrf_token() . "'");
+        }
+
+        return view('pages.riot', ['page' => 'riot']);
+    })->name('riot');
+
 
     Route::get("/api/read", 'DataController@read');
     Route::post("/api/write", 'DataController@write');

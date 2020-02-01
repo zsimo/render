@@ -1,0 +1,61 @@
+@import "font"
+@import "colors"
+@import "reset"
+
+// HEADER
+#header
+  padding: 5px 10px
+  background: $header
+  color: white
+  font-weight: bold
+  #log-area
+    position: absolute
+    top: 50px
+    right: 20px
+
+
+// COLUMNS
+#first-column,
+#second-column
+  height: 100%
+  width: 30%
+  float: left
+  line-height: 2
+  font-size: 1.5em
+
+  input[type=radio]
+    display: none
+  [type=radio]:checked ~ .section
+    background: $selectedItem
+
+  .section
+    display: block
+    padding: 5px 10px
+  .section.editable
+    min-height: 30px
+  .section.editable:empty
+    background: $emptyItem
+  .section.editable:empty::after
+    content: '\002b'
+    color: white
+    text-align: center
+    display: block
+    width: 100%
+    font-weight: bold
+
+
+
+#third-column
+  height: 100%
+  width: 40%
+  float: left
+  //margin-left: 2px
+
+textarea
+  width: 100%
+  color: #4f4f4f
+  font-size: 2em
+
+
+
+@import "breakpoints"
