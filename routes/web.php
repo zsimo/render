@@ -41,6 +41,16 @@ Route::middleware(['auth'])->group(function () {
     })->name('riot');
 
 
+    Route::get('/pages/money', function () {
+
+        if (App::environment('production')) {
+            header("Content-Security-Policy: script-src 'nonce-" . csrf_token() . "'");
+        }
+
+        return view('pages.money', ['page' => 'money']);
+    })->name('money');
+
+
     Route::get("/api/read/{page}", 'DataController@read');
     Route::post("/api/write/{page}", 'DataController@write');
 

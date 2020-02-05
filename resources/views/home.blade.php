@@ -15,6 +15,7 @@
                     @endif
                         <h3><a href="{{ route('yo-yo') }}">yo-yo.js</a></h3>
                         <h3><a href="{{ route('riot') }}">riot.js</a></h3>
+                        <h3><a href="{{ route('money') }}">money.js</a></h3>
                     </ul>
                 </div>
             </div>

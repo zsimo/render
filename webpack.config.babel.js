@@ -4,7 +4,8 @@ var path = require("path");
 
 var pages = [
     "riot",
-    "yo-yo"
+    "yo-yo",
+    "money"
 ];
 
 var fs = require("fs");
