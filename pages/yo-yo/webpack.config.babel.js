@@ -11,7 +11,7 @@ var appRoot = path.resolve(__dirname, "../", "../");
 var configPath = path.resolve(appRoot, "config");
 var mainJsDir = path.resolve(appRoot, "resources", "js");
 var moduleJsDir = path.resolve(__dirname, "src");
-var distPath = path.resolve(appRoot, 'public', 'dist');
+var distPath = path.resolve(appRoot, 'public', 'dist', page);
 
 var ManifestPlugin = require("webpack-manifest-plugin");
 var buildPhpConfigFile = require(path.resolve(mainJsDir, "Node", "buildPhpConfigFile"));

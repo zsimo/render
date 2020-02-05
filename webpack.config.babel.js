@@ -1,17 +1,19 @@
 "use strict";
 
 var path = require("path");
-// riot
-var page = path.basename(__dirname);
+
+var pages = [
+    "riot",
+    "yo-yo"
+];
 
 var fs = require("fs");
 var webpack = require("webpack");
-var appRoot = path.resolve(__dirname, "../", "../");
+var appRoot = path.resolve(__dirname);
 
 var configPath = path.resolve(appRoot, "config");
 var mainJsDir = path.resolve(appRoot, "resources", "js");
-var moduleJsDir = path.resolve(__dirname, "src");
-var distPath = path.resolve(appRoot, 'public', 'dist', page);
+var distPath = path.resolve(appRoot, 'public', 'dist');
 
 var ManifestPlugin = require("webpack-manifest-plugin");
 var buildPhpConfigFile = require(path.resolve(mainJsDir, "Node", "buildPhpConfigFile"));
@@ -70,10 +72,13 @@ module.exports = function (env = {}) {
     }
 
     var entry = {};
-    entry[page] = [
-        "./src/sass/style.sass",
-        "./src/index.js"
-    ];
+    pages.forEach(function (page) {
+        entry[page] = [
+            path.resolve(__dirname, "pages", page, "src", "sass", "style.sass"),
+            path.resolve(__dirname, "pages", page, "src", "index.js")
+        ];
+    });
+
 
     return {
         mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -89,7 +94,8 @@ module.exports = function (env = {}) {
         },
 
         module: {
-            rules: [{
+            rules: [
+                {
                     test: /\.css$/, loader: "style-loader!css-loader"
                 },
                 {
@@ -98,7 +104,7 @@ module.exports = function (env = {}) {
                         "style-loader", // creates style nodes from JS strings
                         "css-loader", // translates CSS into CommonJS
                         "sass-loader" // compiles Sass to CSS, using Node Sass by default
-                    ]
+                        ]
                 },
                 {
                     test: /\.html$/,
@@ -115,7 +121,9 @@ module.exports = function (env = {}) {
 
         resolve: {
             extensions: [".js", ".ts", ".json", ".css", ".scss", ".sass", '.jpg'],
-            modules: ['node_modules', mainJsDir, moduleJsDir]
+            modules: ['node_modules', mainJsDir].concat(pages.map(function (page) {
+                return path.resolve(__dirname, "pages", page, "src");
+            }))
         },
 
 

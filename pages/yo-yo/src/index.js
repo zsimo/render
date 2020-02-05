@@ -57,5 +57,3 @@ bus.on("presentation.log", function (message) {
 
 
 
-
-

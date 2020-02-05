@@ -41,7 +41,7 @@ function is_dev_server_running() : bool
 function hashed_file(string $resource) : string
 {
     list($pageName, $fileExtension) = get_filename_and_extension($resource);
-    return 'dist/' . Config::get('webpack_manifest.'. $pageName . '_' . $fileExtension);
+    return 'dist/'. Config::get('webpack_manifest.'. $pageName . '_' . $fileExtension);
 }
 
 function get_filename_and_extension(string $resource) : array

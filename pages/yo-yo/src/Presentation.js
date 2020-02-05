@@ -104,6 +104,7 @@ module.exports = function (bus) {
 
     return {
         updateFirstColumn: function (data) {
+
             var name = "first-column";
   
             var newHtml = html

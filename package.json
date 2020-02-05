@@ -25,8 +25,8 @@
     "yo-yo": "^1.4.1"
   },
   "scripts": {
-    "rimraf": "rimraf ./public/js/ ./public/index.html ../../public/dist/riot ../../config/webpack_manifest.php",
-    "clear": "cd ../../ && php artisan clear-all",
+    "rimraf": "rimraf ./public/js/ ./public/index.html ./public/dist/ ./config/webpack_manifest.php",
+    "clear": "php artisan clear-all",
     "prestart": "npm run rimraf && npm run clear",
     "start": "cross-env NODE_ENV=development webpack-dev-server --env.devserver",
     "prebuild": "npm run prestart",
