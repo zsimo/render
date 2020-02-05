@@ -32,7 +32,7 @@ class DataController extends Controller
             $userID = Auth::id();
             $usersDir = database_path('users');
             $userDir = $usersDir . '/' . $userID;
-            $this->dataFile = $userDir . '/' . 'data.json';
+            $this->dataFile = $this->getDataFile();
 
             if(!File::exists($usersDir)) {
                 File::makeDirectory($usersDir, 0777, true, true);
