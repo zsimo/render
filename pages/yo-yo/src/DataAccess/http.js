@@ -8,6 +8,7 @@
  * @version 2018/10/27
  */
 
+const PAGE = "yo-yo";
 var _ajaxTimeOut;
 var _ajaxDelay = 100;
 var token = document.querySelector('meta[name="csrf-token"]').content;
@@ -33,7 +34,7 @@ module.exports = {
         clearTimeout(_ajaxTimeOut);
 
         _ajaxTimeOut = setTimeout(function () {
-            fetch(baseUrl + "api/write", {
+            fetch(baseUrl + "api/write/" + PAGE, {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json",
@@ -50,7 +51,7 @@ module.exports = {
     },
 
     read: function (callback) {
-        fetch(baseUrl + "api/read", {
+        fetch(baseUrl + "api/read/" + PAGE, {
             method: "get",
             headers: {
                 "Content-Type": "application/json",

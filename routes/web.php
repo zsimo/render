@@ -41,8 +41,8 @@ Route::middleware(['auth'])->group(function () {
     })->name('riot');
 
 
-    Route::get("/api/read", 'DataController@read');
-    Route::post("/api/write", 'DataController@write');
+    Route::get("/api/read/{page}", 'DataController@read');
+    Route::post("/api/write/{page}", 'DataController@write');
 
 });
 

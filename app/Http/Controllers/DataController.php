@@ -13,26 +13,26 @@ class DataController extends Controller
     private $dataFile;
 
 
-    private function getDataFile()
+    private function getDataFile($page)
     {
         if (Auth::check()) {
             $userID = Auth::id();
             $usersDir = database_path('users');
             $userDir = $usersDir . '/' . $userID;
-            return $userDir . '/' . 'data.json';
+            return $userDir . '/' . $page . '/data.json';
 
         } else {
             return database_path('data.json');
         }
     }
 
-    public function read () {
+    public function read ($page) {
 
         if (Auth::check()) {
             $userID = Auth::id();
             $usersDir = database_path('users');
-            $userDir = $usersDir . '/' . $userID;
-            $this->dataFile = $this->getDataFile();
+            $userDir = $usersDir . '/' . $userID . "/" . $page;
+            $this->dataFile = $this->getDataFile($page);
 
             if(!File::exists($usersDir)) {
                 File::makeDirectory($usersDir, 0777, true, true);
@@ -50,8 +50,8 @@ class DataController extends Controller
         return file_get_contents($this->dataFile);
     }
 
-    public function write (Request $request) {
-        $this->dataFile = $this->getDataFile();
+    public function write (Request $request, $page) {
+        $this->dataFile = $this->getDataFile($page);
         file_put_contents($this->dataFile, json_encode($request->all(), JSON_PRETTY_PRINT));
     }
 }
