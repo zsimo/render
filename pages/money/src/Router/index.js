@@ -7,24 +7,17 @@ var useHash = true; // Defaults to: false
 var hash = '#!'; // Defaults to: '#'
 
 var router = new Navigo(root, useHash, hash);
-// var pages = require("./pages");
-
-// router.hooks({
-//     before: function(done, params) {
-//
-//     },
-//
-//     after: function (params) {
-//         // pages.nav();
-//     }
-// });
+// var stateService = require("money/src/StateService");
+var Presentation = require("money/src/Presentation");
 
 var routerOptions = {};
 routerOptions[routes.HOME] = function () {
-    console.log("home");
+    Presentation.render(state.context);
 };
 routerOptions[routes.EDIT] = function () {
-    console.log("edit");
+    Presentation.render({
+        page: routes.EDIT
+    });
 };
 // 'patients/:patient_id/visit/:visit_id/record/:record_id/history/:field_id': function (params) {
 //     pages.patients.showFieldHistory(params);
@@ -39,6 +32,9 @@ router.notFound(function () {
     router.navigate(routes.HOME);
 });
 
+
+
+
 module.exports = {
     init: function () {
         router.resolve();
@@ -46,8 +42,12 @@ module.exports = {
         if (!window.location.hash) {
             router.navigate(routes.HOME);
         }
+
+        setTimeout(function () {
+            router.navigate(routes.EDIT);
+        }, 1000);
     },
-    navigate: router.navigate
+
 };
 
 

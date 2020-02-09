@@ -1,7 +1,9 @@
 "use strict";
 
-var {html, render} = require("lit-html");
+var {render} = require("lit-html");
 var configs = require("money/src/configs");
+var templates = require("money/src/Presentation/templates");
+var selectors = require("money/src/Presentation/selectors");
 
 document.addEventListener("DOMContentLoaded", function() {
     try {
@@ -13,9 +15,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 module.exports = {
     render: function (context) {
-        console.log(context)
 
-        // var html = templates.get(state.USERS);
-        // render(html, document.querySelector(config.MAIN_CONTENT_SELECTOR));
+        var template = templates[context.page];
+
+        if (template) {
+            render(template(context), document.querySelector(selectors.MAIN_CONTENT));
+        }
+
     }
 };
+
