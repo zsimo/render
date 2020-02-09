@@ -1,7 +1,10 @@
 "use strict";
 
 
-console.log("money");
+
+var Domain = require("./Domain.js");
+
+Domain.loadData();
 
 
 

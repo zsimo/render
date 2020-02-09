@@ -2,8 +2,10 @@
 
 
 var apiServer;
+var page;
 try {
     apiServer = window.Render.api_server;
+    page = window.Render.page;
 } catch (e) {
 
 }
@@ -18,5 +20,6 @@ module.exports = {
         }
     },
 
-    "API_SERVER" : apiServer
+    "API_SERVER" : apiServer,
+    "PAGE": page
 };

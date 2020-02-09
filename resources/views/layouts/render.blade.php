@@ -21,9 +21,7 @@
     </div>
 
     @section('main-content')
-        <div id="first-column"></div>
-        <div id="second-column"></div>
-        <div id="third-column"></div>
+
     @show
 
 
