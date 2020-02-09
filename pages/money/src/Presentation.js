@@ -13,7 +13,7 @@ module.exports = {
     render: function (context) {
         console.log(context)
 
-        var html = templates.get(state.USERS);
-        render(html, document.querySelector(config.MAIN_CONTENT_SELECTOR));
+        // var html = templates.get(state.USERS);
+        // render(html, document.querySelector(config.MAIN_CONTENT_SELECTOR));
     }
 };
