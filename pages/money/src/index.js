@@ -2,9 +2,9 @@
 
 
 
-var Domain = require("./Domain.js");
+var stateService = require("money/src/StateService");
 
-Domain.loadData();
+stateService.send("FETCH");
 
 
 

@@ -14,6 +14,7 @@ var appRoot = path.resolve(__dirname);
 
 var configPath = path.resolve(appRoot, "config");
 var mainJsDir = path.resolve(appRoot, "resources", "js");
+var pagesDir = path.resolve(appRoot, "pages");
 var distPath = path.resolve(appRoot, 'public', 'dist');
 
 var ManifestPlugin = require("webpack-manifest-plugin");
@@ -122,7 +123,7 @@ module.exports = function (env = {}) {
 
         resolve: {
             extensions: [".js", ".ts", ".json", ".css", ".scss", ".sass", '.jpg'],
-            modules: ['node_modules', mainJsDir].concat(pages.map(function (page) {
+            modules: ['node_modules', mainJsDir, pagesDir].concat(pages.map(function (page) {
                 return path.resolve(__dirname, "pages", page, "src");
             }))
         },

@@ -1,13 +1,13 @@
 "use strict";
 
 var configs = require("./configs.js");
-console.log(configs)
 var DataAccess = require("./DataAccess/" + configs.API_SERVER + ".js");
 
 module.exports = {
-    loadData: function () {
+    loadData: function (callback) {
         DataAccess.read(function (data) {
-            console.log(data);
+
+            callback(data);
             // state = addEmptyItem(data);
 
             // bus.emit("presentation.render-first-column", state);

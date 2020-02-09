@@ -7,7 +7,7 @@ var fetchMachine = Machine({
     initial: "idle",
     strict: true,
     context: {
-        data: {}
+        movements: {}
     },
     states: {
         idle: {
@@ -34,12 +34,9 @@ var fetchMachine = Machine({
             }
         },
         successful: {
+            entry: ["render"],
             on: {
                 FETCH: "pending"
-            },
-            states: {
-                widthData: {},
-                widthoutData: {}
             }
         }
     }
@@ -48,7 +45,7 @@ var fetchMachine = Machine({
     actions: {
         setResults: assign(function (context, event) {
             return {
-                results: event.results
+                movements: event.movements
             };
         }),
         setMessage: assign(function (context, event) {
