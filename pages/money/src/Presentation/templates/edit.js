@@ -2,6 +2,11 @@
 
 var {html} = require("lit-html");
 var Domain = require("money/src/Domain");
+
+const INPUT_OUTPUT_LABELS = {
+    input: "+",
+    output: "-"
+};
 var payload = {
     type: "input",
     amount: ""
@@ -24,7 +29,7 @@ module.exports = function (context) {
 
 
 function render () {
-    document.querySelector("#amount-label").innerText = payload.type + payload.amount;
+    document.querySelector("#amount-label").innerText = INPUT_OUTPUT_LABELS[payload.type] + payload.amount;
 }
 
 

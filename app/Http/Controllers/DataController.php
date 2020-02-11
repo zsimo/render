@@ -55,14 +55,40 @@ class DataController extends Controller
 
     public function write (Request $request, $page) {
 //        if (Auth::check()) {
-
+//        try {
             if ($page == 'money') {
                 $this->dataFile = $this->getDataFile($page);
-                $data = file_get_contents($this->dataFile);
+                $data = json_decode(file_get_contents($this->dataFile));
                 $payload = $request->all();
-                dd($payload['type']);
-//                file_put_contents($this->dataFile,
-//                    json_encode($request->all(), JSON_PRETTY_PRINT));
+                $year = $payload['year'];
+                $month = $payload['month'];
+                $day = $payload['day'];
+
+                if (!isset($data[$year])) {
+                    $data[$year] = [];
+                }
+                if (!isset($data[$year][$month])) {
+                    $data[$year][$month] = [];
+                }
+                if (!isset($data[$year][$month][$day])) {
+                    $data[$year][$month][$day] = [];
+                }
+
+                $item = [
+                    'type' => $payload['type'],
+                    'amount' => $payload['amount'],
+                    'time' => $payload['time']
+                ];
+                array_push($data[$year][$month][$day], $item);
+                file_put_contents($this->dataFile,
+                    json_encode($data, JSON_PRETTY_PRINT));
+
+                return $data;
+
+//            } catch (\Exception $e) {
+//                return ["msg"=>$e->getMessage()];
+//            }
+
             } else {
                 $this->dataFile = $this->getDataFile($page);
                 file_put_contents($this->dataFile,
