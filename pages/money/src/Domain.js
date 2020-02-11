@@ -16,5 +16,17 @@ module.exports = {
             // bus.emit("presentation.render-second-column", firstColumnItemIndex, state[firstColumnItemIndex].children);
 
         });
+    },
+
+
+
+    save: function (payload, callback) {
+
+        DataAccess.write(payload, function (response) {
+
+            callback(response);
+
+
+        });
     }
 };

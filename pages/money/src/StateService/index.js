@@ -10,7 +10,7 @@ var stateService = interpret(machine.withConfig({
             Domain.loadData(function (data) {
                 stateService.send({
                     type: "RESOLVE",
-                    movements: ["ciao", "due"]
+                    movements: data
                 });
             });
         }

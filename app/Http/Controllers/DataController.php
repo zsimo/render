@@ -28,7 +28,7 @@ class DataController extends Controller
 
     public function read ($page) {
 
-        if (Auth::check()) {
+//        if (Auth::check()) {
             $userID = Auth::id();
             $usersDir = database_path('users');
             $userDir = $usersDir . '/' . $userID . "/" . $page;
@@ -42,16 +42,35 @@ class DataController extends Controller
                 file_put_contents($this->dataFile, json_encode([], JSON_PRETTY_PRINT));
             }
 
-        } else {
-            $this->dataFile = database_path('data.json');
-        }
+            return file_get_contents($this->dataFile);
+
+//        }
+//        else {
+//            $this->dataFile = database_path('data.json');
+//        }
 
 
-        return file_get_contents($this->dataFile);
+
     }
 
     public function write (Request $request, $page) {
-        $this->dataFile = $this->getDataFile($page);
-        file_put_contents($this->dataFile, json_encode($request->all(), JSON_PRETTY_PRINT));
+//        if (Auth::check()) {
+
+            if ($page == 'money') {
+                $this->dataFile = $this->getDataFile($page);
+                $data = file_get_contents($this->dataFile);
+                $payload = $request->all();
+                dd($payload['type']);
+//                file_put_contents($this->dataFile,
+//                    json_encode($request->all(), JSON_PRETTY_PRINT));
+            } else {
+                $this->dataFile = $this->getDataFile($page);
+                file_put_contents($this->dataFile,
+                    json_encode($request->all(), JSON_PRETTY_PRINT));
+            }
+
+
+
+//        }
     }
 }

@@ -12,7 +12,9 @@ var Presentation = require("money/src/Presentation");
 
 var routerOptions = {};
 routerOptions[routes.HOME] = function () {
-    Presentation.render(state.context);
+    Presentation.render({
+        page: routes.HOME
+    });
 };
 routerOptions[routes.EDIT] = function () {
     Presentation.render({
