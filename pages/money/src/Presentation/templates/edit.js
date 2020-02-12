@@ -2,6 +2,7 @@
 
 var {html} = require("lit-html");
 var Domain = require("money/src/Domain");
+var bus = require("money/src/bus");
 
 const INPUT_OUTPUT_LABELS = {
     input: "+",
@@ -12,11 +13,11 @@ var payload = {
     amount: "0"
 }
 
-module.exports = function (item) {
-    var sign = INPUT_OUTPUT_LABELS[item.type] || '';
-    var amount = item.amount || '';
-    console.log(item);
-    return html`
+module.exports = function (state) {
+        var sign = INPUT_OUTPUT_LABELS[state.type] || '';
+        var amount = state.amount || '';
+        console.log(state);
+        return html`
         <h1>${sign} ${amount}</h1>
         <button name="save" @click=${buttonClick}>Save</button>
         <button style="background: green" name="input" @click=${buttonClick}>+</button>
@@ -40,6 +41,9 @@ function render () {
     // document.querySelector("#amount-label").innerText = INPUT_OUTPUT_LABELS[payload.type] + payload.amount;
 }
 
+function amountOnInput (event) {
+    bus.emit("amount-on-input", event);
+}
 
 
 function buttonClick (event) {
@@ -74,7 +78,6 @@ function buttonClick (event) {
     render();
 }
 
-function amountOnInput (event) {
-    payload.amount = this.value;
-    render();
-}
+
+var Presentation = require("money/src/Presentation");
+console.log(Presentation);
