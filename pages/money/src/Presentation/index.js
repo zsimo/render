@@ -14,13 +14,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 module.exports = {
-    render: function (context) {
+    render: function (page, payload) {
 
-        var template = templates[context.page];
+        var template = templates[page];
 
         if (template) {
-            render(template(context), document.querySelector(selectors.MAIN_CONTENT));
+            render(template(payload), document.querySelector(selectors.MAIN_CONTENT));
         }
+
+    },
+    amountOnInput: function () {
 
     }
 };

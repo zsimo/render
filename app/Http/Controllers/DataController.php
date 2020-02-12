@@ -54,40 +54,50 @@ class DataController extends Controller
     }
 
     public function write (Request $request, $page) {
-//        if (Auth::check()) {
-//        try {
+
+
             if ($page == 'money') {
-                $this->dataFile = $this->getDataFile($page);
-                $data = json_decode(file_get_contents($this->dataFile));
-                $payload = $request->all();
-                $year = $payload['year'];
-                $month = $payload['month'];
-                $day = $payload['day'];
 
-                if (!isset($data[$year])) {
-                    $data[$year] = [];
+                try {
+                    $this->dataFile = $this->getDataFile($page);
+                    $data = json_decode(file_get_contents($this->dataFile), true);
+
+                    $payload = $request->all();
+
+                    $year = $payload['year'];
+                    $month = $payload['month'];
+                    $day = $payload['day'];
+
+
+                    if (!array_key_exists ($year, $data)) {
+                        $data[$year] = [];
+                    }
+
+
+                    if (!array_key_exists($month, $data[$year])) {
+                        $data[$year][$month] = [];
+                    }
+
+                    if (!array_key_exists($day, $data[$year][$month])) {
+                        $data[$year][$month][$day] = [];
+                    }
+
+
+                    $item = [
+                        'type' => $payload['type'],
+                        'amount' => $payload['amount'],
+                        'time' => $payload['time']
+                    ];
+                    array_push($data[$year][$month][$day], $item);
+                    file_put_contents($this->dataFile,
+                        json_encode($data, JSON_PRETTY_PRINT));
+
+                    return $data;
+
+                } catch (\Exception $e) {
+                    return ["msg"=>$e->getMessage()];
                 }
-                if (!isset($data[$year][$month])) {
-                    $data[$year][$month] = [];
-                }
-                if (!isset($data[$year][$month][$day])) {
-                    $data[$year][$month][$day] = [];
-                }
 
-                $item = [
-                    'type' => $payload['type'],
-                    'amount' => $payload['amount'],
-                    'time' => $payload['time']
-                ];
-                array_push($data[$year][$month][$day], $item);
-                file_put_contents($this->dataFile,
-                    json_encode($data, JSON_PRETTY_PRINT));
-
-                return $data;
-
-//            } catch (\Exception $e) {
-//                return ["msg"=>$e->getMessage()];
-//            }
 
             } else {
                 $this->dataFile = $this->getDataFile($page);
@@ -97,6 +107,5 @@ class DataController extends Controller
 
 
 
-//        }
     }
 }

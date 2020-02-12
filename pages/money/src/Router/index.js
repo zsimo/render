@@ -12,14 +12,14 @@ var Presentation = require("money/src/Presentation");
 
 var routerOptions = {};
 routerOptions[routes.HOME] = function () {
-    Presentation.render({
-        page: routes.HOME
-    });
+    Presentation.render(routes.HOME);
 };
 routerOptions[routes.EDIT] = function () {
-    Presentation.render({
-        page: routes.EDIT
-    });
+    var item = {
+        type: "input",
+        amount: 300
+    };
+    Presentation.render(routes.EDIT, item);
 };
 // 'patients/:patient_id/visit/:visit_id/record/:record_id/history/:field_id': function (params) {
 //     pages.patients.showFieldHistory(params);

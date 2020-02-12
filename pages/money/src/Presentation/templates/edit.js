@@ -9,15 +9,23 @@ const INPUT_OUTPUT_LABELS = {
 };
 var payload = {
     type: "input",
-    amount: ""
+    amount: "0"
 }
 
-module.exports = function (context) {
+module.exports = function (item) {
+    var sign = INPUT_OUTPUT_LABELS[item.type] || '';
+    var amount = item.amount || '';
+    console.log(item);
     return html`
-        <h1 id="amount-label"></h1><button name="save" @click=${buttonClick}>Save</button>
+        <h1>${sign} ${amount}</h1>
+        <button name="save" @click=${buttonClick}>Save</button>
         <button style="background: green" name="input" @click=${buttonClick}>+</button>
         <br>
-        <input placeholder="amount" name="amount" type="number" @input=${amountOnInput}/>
+        <input placeholder="amount"
+                name="amount"
+                type="number"
+                @input=${amountOnInput}
+                value="${amount}"/>
         <br>
         <button style="background: red" name="output" @click=${buttonClick}>-</button>
         <br>
@@ -29,7 +37,7 @@ module.exports = function (context) {
 
 
 function render () {
-    document.querySelector("#amount-label").innerText = INPUT_OUTPUT_LABELS[payload.type] + payload.amount;
+    // document.querySelector("#amount-label").innerText = INPUT_OUTPUT_LABELS[payload.type] + payload.amount;
 }
 
 
@@ -45,9 +53,9 @@ function buttonClick (event) {
             break;
         case "save":
             var now = new Date();
-            payload.year = now.getFullYear();
-            payload.month = now.getMonth() + 1;
-            payload.day = now.getDate();
+            payload.year = now.getFullYear().toString();
+            payload.month = (now.getMonth() + 1).toString();
+            payload.day = now.getDate().toString();
             payload.time = now.toLocaleTimeString();
             console.log(payload);
             Domain.save(payload, function (response) {
