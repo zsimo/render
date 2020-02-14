@@ -16,8 +16,9 @@ var payload = {
 module.exports = function (state) {
         var sign = INPUT_OUTPUT_LABELS[state.type] || '';
         var amount = state.amount || '';
-        console.log(state);
+
         return html`
+        <div class="bar"></div>
         <h1>${sign} ${amount}</h1>
         <button name="save" @click=${buttonClick}>Save</button>
         <button style="background: green" name="input" @click=${buttonClick}>+</button>
@@ -36,10 +37,6 @@ module.exports = function (state) {
     `;
 };
 
-
-function render () {
-    // document.querySelector("#amount-label").innerText = INPUT_OUTPUT_LABELS[payload.type] + payload.amount;
-}
 
 function amountOnInput (event) {
     bus.emit("amount-on-input", event);
@@ -61,7 +58,7 @@ function buttonClick (event) {
             payload.month = (now.getMonth() + 1).toString();
             payload.day = now.getDate().toString();
             payload.time = now.toLocaleTimeString();
-            console.log(payload);
+
             Domain.save(payload, function (response) {
                 console.log(response);
             });
@@ -75,9 +72,6 @@ function buttonClick (event) {
         payload.type = "";
     }
 
-    render();
 }
 
 
-var Presentation = require("money/src/Presentation");
-console.log(Presentation);

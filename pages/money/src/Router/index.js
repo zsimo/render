@@ -2,6 +2,7 @@
 
 var Navigo = require("navigo");
 var routes = require("money/src/Router/routes");
+var mediator = require("money/src/mediator");
 var state = require("money/src/Router/state");
 var root = null;
 var useHash = true; // Defaults to: false
@@ -35,7 +36,7 @@ router.notFound(function () {
 });
 
 
-
+mediator(router, Presentation);
 
 module.exports = {
     init: function () {
@@ -45,9 +46,9 @@ module.exports = {
             router.navigate(routes.HOME);
         }
 
-        setTimeout(function () {
-            router.navigate(routes.EDIT);
-        }, 1000);
+        // setTimeout(function () {
+        //     router.navigate(routes.EDIT);
+        // }, 1000);
     },
 
 };

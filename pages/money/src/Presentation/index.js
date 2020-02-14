@@ -37,7 +37,7 @@ Presentation = {
 };
 
 
-bus.on("amount-on-input", Presentation.amountOnInput);
+
 
 module.exports = Presentation;
 

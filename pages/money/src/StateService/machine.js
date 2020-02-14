@@ -7,8 +7,7 @@ var fetchMachine = Machine({
     initial: "idle",
     strict: true,
     context: {
-        movements: {},
-        page: "/"
+        movements: {}
     },
     states: {
         idle: {
