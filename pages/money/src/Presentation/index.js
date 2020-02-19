@@ -8,7 +8,6 @@ var templates = require("money/src/Presentation/templates");
 var selectors = require("money/src/Presentation/selectors");
 var routes = require("money/src/Router/routes");
 var state = require("money/src/Router/state");
-var bus = require("money/src/bus");
 
 document.addEventListener("DOMContentLoaded", function() {
     try {
@@ -22,7 +21,6 @@ Presentation = {
 
         var template = templates[page];
 
-
         if (template) {
             render(template(state), document.querySelector(selectors.MAIN_CONTENT));
         }
@@ -31,6 +29,7 @@ Presentation = {
     amountOnInput: function (event) {
         var page = routes.EDIT;
         var currenStatus = state[routes.EDIT];
+
         currenStatus.amount = event.target.value;
         Presentation.render(page, currenStatus);
     }

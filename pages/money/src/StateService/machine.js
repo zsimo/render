@@ -7,7 +7,8 @@ var fetchMachine = Machine({
     initial: "idle",
     strict: true,
     context: {
-        movements: {}
+        movements: {},
+        page: undefined
     },
     states: {
         idle: {
@@ -19,7 +20,7 @@ var fetchMachine = Machine({
             entry: ["fetchData"],
             on: {
                 RESOLVE: {
-                    target: "successful",
+                    target: "ready",
                     actions: ["setResults"]
                 },
                 REJECT: {
@@ -33,10 +34,12 @@ var fetchMachine = Machine({
                 FETCH: "pending"
             }
         },
-        successful: {
+        ready: {
             // entry: ["render"],
             on: {
-                FETCH: "pending"
+                CHANGE_PAGE: {
+                    actions: ["changePage"]
+                }
             }
         }
     }
@@ -52,12 +55,12 @@ var fetchMachine = Machine({
             return {
                 message: event.message
             };
+        }),
+        changePage: assign(function (context, event) {
+            return {
+                page: event.page
+            };
         })
-        // changePage: assign(function (context, event) {
-        //     return {
-        //         page: event.page
-        //     };
-        // })
     }
     // guards: {
     //     hasData: function (context, event) {

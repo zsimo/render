@@ -11,7 +11,7 @@ const INPUT_OUTPUT_LABELS = {
 var payload = {
     type: "input",
     amount: "0"
-}
+};
 
 module.exports = function (state) {
         var sign = INPUT_OUTPUT_LABELS[state.type] || '';
