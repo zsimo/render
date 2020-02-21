@@ -1,25 +1,25 @@
 "use strict";
 
 var {html} = require("lit-html");
-var Domain = require("money/src/Domain");
 var bus = require("money/src/bus");
+const events = require("money/src/events");
 
 const INPUT_OUTPUT_LABELS = {
     input: "+",
     output: "-"
 };
 var payload = {
-    type: "input",
-    amount: "0"
+    type: "input"
 };
 
 module.exports = function (state) {
         var sign = INPUT_OUTPUT_LABELS[state.type] || '';
-        var amount = state.amount || '';
+        payload.amount = state.amount || '';
+        payload.type = state.type;
 
         return html`
         <div class="bar"></div>
-        <h1>${sign} ${amount}</h1>
+        <h1>${sign} ${payload.amount || "0"}</h1>
         <button name="save" @click=${buttonClick}>Save</button>
         <button style="background: green" name="input" @click=${buttonClick}>+</button>
         <br>
@@ -27,11 +27,11 @@ module.exports = function (state) {
                 name="amount"
                 type="number"
                 @input=${amountOnInput}
-                value="${amount}"/>
+                value="${payload.amount}"/>
         <br>
         <button style="background: red" name="output" @click=${buttonClick}>-</button>
         <br>
-        Would you pick a date different from now?
+        Would you pick a different date from now?
         <input type="datetime-local" name="time" placeholder="time">
 
     `;
@@ -39,18 +39,19 @@ module.exports = function (state) {
 
 
 function amountOnInput (event) {
-    bus.emit("amount-on-input", event);
+    bus.emit(events.AMOUNT_ON_INPUT, event);
 }
 
 
 function buttonClick (event) {
-    switch (event.target.getAttribute("name")) {
+    var action = event.target.getAttribute("name");
+    switch (action) {
 
         case "input":
-            payload.type = "input";
+            bus.emit(events.TYPE_ON_CHANGE, action);
             break;
         case "output":
-            payload.type = "output";
+            bus.emit(events.TYPE_ON_CHANGE, action);
             break;
         case "save":
             var now = new Date();
@@ -59,17 +60,11 @@ function buttonClick (event) {
             payload.day = now.getDate().toString();
             payload.time = now.toLocaleTimeString();
 
-            Domain.save(payload, function (response) {
-                console.log(response);
-            });
+            bus.emit(events.SAVE, payload);
             break;
 
         default:
             break;
-    }
-
-    if (!payload.amount) {
-        payload.type = "";
     }
 
 }

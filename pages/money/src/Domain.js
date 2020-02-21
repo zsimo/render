@@ -26,7 +26,6 @@ module.exports = {
 
             callback(response);
 
-
         });
     }
 };

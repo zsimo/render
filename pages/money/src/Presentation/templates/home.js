@@ -3,6 +3,7 @@
 var {html} = require("lit-html");
 var bus = require("money/src/bus");
 var routes = require("money/src/Router/routes");
+const events = require("money/src/events");
 
 module.exports = function (state) {
 
@@ -43,6 +44,6 @@ function currentMonthTotal (state) {
 
 function edit (event) {
 
-    bus.emit("navigate", routes.EDIT);
+    bus.emit(events.NAVIGATE, routes.EDIT);
 
 }

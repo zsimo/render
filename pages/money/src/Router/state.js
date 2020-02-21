@@ -5,7 +5,7 @@ var routes = require("money/src/Router/routes");
 var state = {};
 state[routes.EDIT] = {
     type: "input",
-    amount: 300
+    amount: 0
 };
 
 

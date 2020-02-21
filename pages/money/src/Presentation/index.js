@@ -8,6 +8,7 @@ var templates = require("money/src/Presentation/templates");
 var selectors = require("money/src/Presentation/selectors");
 var routes = require("money/src/Router/routes");
 var state = require("money/src/Router/state");
+var Domain = require("money/src/Domain");
 
 document.addEventListener("DOMContentLoaded", function() {
     try {
@@ -30,8 +31,19 @@ Presentation = {
         var page = routes.EDIT;
         var currenStatus = state[routes.EDIT];
 
-        currenStatus.amount = event.target.value;
+        currenStatus.amount = parseInt(event.target.value, 10);
         Presentation.render(page, currenStatus);
+    },
+    typeOnChange: function (type) {
+        var page = routes.EDIT;
+        var currenStatus = state[routes.EDIT];
+        currenStatus.type = type;
+        Presentation.render(page, currenStatus);
+    },
+    save: function (payload) {
+        Domain.save(payload, function (response) {
+            console.log(response);
+        });
     }
 };
 

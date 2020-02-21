@@ -1,10 +1,14 @@
 "use strict";
 
 var bus = require("money/src/bus");
+const events = require("money/src/events");
 
 module.exports = function (router, presentation) {
-    bus.on("navigate", function (page) {
+    bus.on(events.NAVIGATE, function (page) {
         router.navigate(page);
     });
-    bus.on("amount-on-input", presentation.amountOnInput);
+    bus.on(events.AMOUNT_ON_INPUT, presentation.amountOnInput);
+    bus.on(events.TYPE_ON_CHANGE, presentation.typeOnChange);
+    bus.on(events.SAVE, presentation.save);
+
 };
