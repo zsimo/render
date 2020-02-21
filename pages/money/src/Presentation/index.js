@@ -12,7 +12,6 @@ var Domain = require("money/src/Domain");
 var bus = require("money/src/bus");
 const events = require("money/src/events");
 
-// var stateService = require("money/src/StateService");
 
 document.addEventListener("DOMContentLoaded", function() {
     try {

@@ -6,7 +6,7 @@ var routes = require("money/src/Router/routes");
 const events = require("money/src/events");
 
 module.exports = function (state) {
-
+    console.log(state);
 
     return html`
         <h1>total ${currentMonthTotal(state)}</h1>
