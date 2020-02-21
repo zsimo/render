@@ -17,8 +17,13 @@ module.exports = function (state) {
         payload.amount = state.amount || '';
         payload.type = state.type;
 
+        // setTimeout(function () {
+        //     document.querySelector('input[name="time"]').valueAsDate = new Date();
+        // }, 5000);
+
         return html`
         <div class="bar"></div>
+        <small>${today()}</small>
         <h1>${sign} ${payload.amount || "0"}</h1>
         <button name="save" @click=${buttonClick}>Save</button>
         <button style="background: green" name="input" @click=${buttonClick}>+</button>
@@ -36,6 +41,22 @@ module.exports = function (state) {
 
     `;
 };
+
+
+function today () {
+    var now = new Date();
+    var year = now.getFullYear().toString();
+    var month = now.toLocaleString('default', { month: 'long' })
+    var day = now.getDate().toString();
+
+    return day + " " + month + " " + year;
+
+}
+
+
+function datetimeLocalInputNow () {
+    return new Date().toISOString().split(".")[0];
+}
 
 
 function amountOnInput (event) {

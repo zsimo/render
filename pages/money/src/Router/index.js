@@ -15,14 +15,14 @@ var stateService = require("money/src/StateService");
 
 var routerOptions = {};
 routerOptions[routes.HOME] = function () {
-    var page = routes.HOME;
-    var currentState = stateService.machine.context;
-    Presentation.render(page, currentState);
-
-    stateService.send({
-        type: "CHANGE_PAGE",
-        page: page
-    });
+    // var page = routes.HOME;
+    // var currentState = stateService.machine.context;
+    // Presentation.render(page, currentState);
+    //
+    // stateService.send({
+    //     type: "CHANGE_PAGE",
+    //     page: page
+    // });
 
     stateService.send("FETCH");
 };

@@ -9,11 +9,23 @@ module.exports = function (state) {
     console.log(state);
 
     return html`
+        <small>${thisMounth()}</small>
         <h1>total ${currentMonthTotal(state)}</h1>
         <button @click=${edit}>edit</button>
 
     `;
 };
+
+
+function thisMounth () {
+    var now = new Date();
+    var year = now.getFullYear().toString();
+    var month = now.toLocaleString('default', { month: 'long' })
+    var day = now.getDate().toString();
+
+    return month + " " + year;
+
+}
 
 
 function currentMonthTotal (state) {

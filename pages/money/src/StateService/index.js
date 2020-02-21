@@ -5,6 +5,8 @@ var machine = require("money/src/StateService/machine");
 var Domain = require("money/src/Domain");
 var Presentation = require("money/src/Presentation");
 var routes = require("money/src/Router/routes");
+var bus = require("money/src/bus");
+const events = require("money/src/events");
 
 var stateService = interpret(machine.withContext({
         // merge with original context
@@ -23,7 +25,7 @@ var stateService = interpret(machine.withContext({
             },
             renderHome: function (context, event) {
                 Presentation.render(routes.HOME, context);
-                //bus.emit(events.NAVIGATE, routes.HOME);
+                bus.emit(events.NAVIGATE, routes.HOME);
             }
         }
     }))

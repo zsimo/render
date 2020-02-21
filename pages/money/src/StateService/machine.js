@@ -36,6 +36,7 @@ var fetchMachine = Machine({
         },
         ready: {
             entry: ["renderHome"],
+            // cond: 'isHome',
             on: {
                 CHANGE_PAGE: {
                     actions: ["changePage"]
@@ -62,12 +63,12 @@ var fetchMachine = Machine({
                 page: event.page
             };
         })
+    },
+    guards: {
+        isHome: function (context, event) {
+            return context.page === "HOME";
+        }
     }
-    // guards: {
-    //     hasData: function (context, event) {
-    //         return true;
-    //     }
-    // }
 });
 
 module.exports = fetchMachine;
