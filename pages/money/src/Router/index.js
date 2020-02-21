@@ -23,6 +23,8 @@ routerOptions[routes.HOME] = function () {
         type: "CHANGE_PAGE",
         page: page
     });
+
+    stateService.send("FETCH");
 };
 routerOptions[routes.EDIT] = function () {
     var page = routes.EDIT;
@@ -59,9 +61,7 @@ module.exports = {
             router.navigate(routes.HOME);
         }
 
-        // setTimeout(function () {
-        //     router.navigate(routes.EDIT);
-        // }, 1000);
+
     },
 
 };

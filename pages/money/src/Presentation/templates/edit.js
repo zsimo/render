@@ -61,6 +61,7 @@ function buttonClick (event) {
             payload.time = now.toLocaleTimeString();
 
             bus.emit(events.SAVE, payload);
+            // bus.emit(events.NAVIGATE, events.HOME);
             break;
 
         default:

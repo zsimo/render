@@ -23,6 +23,7 @@ var stateService = interpret(machine.withContext({
             },
             renderHome: function (context, event) {
                 Presentation.render(routes.HOME, context);
+                //bus.emit(events.NAVIGATE, routes.HOME);
             }
         }
     }))

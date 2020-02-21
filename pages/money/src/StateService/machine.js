@@ -35,11 +35,12 @@ var fetchMachine = Machine({
             }
         },
         ready: {
-            // entry: ["render"],
+            entry: ["renderHome"],
             on: {
                 CHANGE_PAGE: {
                     actions: ["changePage"]
-                }
+                },
+                FETCH: "pending"
             }
         }
     }

@@ -9,6 +9,10 @@ var selectors = require("money/src/Presentation/selectors");
 var routes = require("money/src/Router/routes");
 var state = require("money/src/Router/state");
 var Domain = require("money/src/Domain");
+var bus = require("money/src/bus");
+const events = require("money/src/events");
+
+// var stateService = require("money/src/StateService");
 
 document.addEventListener("DOMContentLoaded", function() {
     try {
@@ -42,7 +46,7 @@ Presentation = {
     },
     save: function (payload) {
         Domain.save(payload, function (response) {
-            console.log(response);
+            bus.emit(events.NAVIGATE, routes.HOME);
         });
     }
 };

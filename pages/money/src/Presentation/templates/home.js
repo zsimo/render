@@ -9,7 +9,7 @@ module.exports = function (state) {
 
 
     return html`
-        <h1>home ${currentMonthTotal(state)}</h1>
+        <h1>total ${currentMonthTotal(state)}</h1>
         <button @click=${edit}>edit</button>
 
     `;
@@ -17,6 +17,7 @@ module.exports = function (state) {
 
 
 function currentMonthTotal (state) {
+
     var movements = state.movements;
     var now = new Date();
     var year = now.getFullYear().toString();
